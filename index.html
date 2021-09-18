@@ -1,21 +1,19 @@
 <!DOCTYPE html>
-<head>
-  <meta name='viewport' content='width=device-width, initial-scale=1'>
-  <meta name="theme-color" content="#222831">
-  <link rel='manifest' href='./manifest.json'>
- 
-  <script>
-    // Registering our Service worker
-    if('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('sw.js', { scope: './' })
-    }
-  </script>
-</head>
-<body>
-  <div class="hero">
-    <h1>Temporas</h1>
-    <h2>Take your medicine my friend</h2>
-    <div id="status"></div>
-    <button id="unsubscribe">unsubscribe</button>
-  </div>
-</body>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Hot Module Replacement</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet"  href="src/css/index.css">
+  </head>
+  <body>
+    <h1>Hello!!hff!hsfsfvfh</h1>
+
+    <script>
+      if('serviceWorker' in navigator){
+        navigator.serviceWorker.register('/service-worker.js')
+      }
+    </script>
+  </body>
+</html>
