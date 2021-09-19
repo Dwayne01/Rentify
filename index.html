@@ -2,14 +2,22 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Hot Module Replacement</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="manifest" href="manifest.json">
-    <link rel="stylesheet"  href="src/css/index.css">
-  </head>
-  <body>
-    <h1>Hello!!hff!hsfsfvfh</h1>
+    <% if(manifest) { %>
+      <link rel="manifest" href="<%= manifest %>">
+      <% } %>
+  
+    </head>
+    <body>
 
+      <link id="containter">
+        <a href="home.html">Home</a>
+      </div>
+     
+      <% if(serviceworker) { %>
+        <script src="<%= serviceworker %>"></script>
+        <% } %>
+    
     <script>
       if('serviceWorker' in navigator){
         navigator.serviceWorker.register('/service-worker.js')
