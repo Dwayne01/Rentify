@@ -1,6 +1,10 @@
-importScripts('https://storage.googleapis.com/workbox-cdn/releases/6.2.0/workbox-sw.js');
+importScripts('https://storage.googleapis.com/workbox-cdn/releases/6.2.0/workbox-sw.js')
 
 workbox.routing.registerRoute(
-    ({request}) => request.destination === 'image',
-    new workbox.strategies.NetworkFirst(),
-);
+  ({request}) => request.destination === 'image',
+  new workbox.strategies.NetworkFirst(),
+)
+
+self.addEventListener('install', (e) => {
+  console.log('service worker called')
+})

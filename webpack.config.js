@@ -1,8 +1,7 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const path = require('path');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
-const CleanWebpackPlugin = require('clean-webpack-plugin').CleanWebpackPlugin;
-
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const path = require('path')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
+const CleanWebpackPlugin = require('clean-webpack-plugin').CleanWebpackPlugin
 
 module.exports = {
   entry: {
@@ -16,7 +15,7 @@ module.exports = {
   devServer: {
     static: './dist',
     open: true,
-
+    hot: true,
   },
   plugins: [
     new CleanWebpackPlugin(),
@@ -28,6 +27,10 @@ module.exports = {
         },
         {
           from: 'service-worker.js',
+        },
+        {
+          from: 'src/css',
+          to: 'src/css',
         },
         {
           from: 'icons/',
@@ -82,4 +85,4 @@ module.exports = {
       },
     ],
   },
-};
+}

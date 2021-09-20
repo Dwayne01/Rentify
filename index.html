@@ -3,25 +3,40 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="theme-color" content="red">
     <% if(manifest) { %>
       <link rel="manifest" href="<%= manifest %>">
       <% } %>
   
+      <!-- Load an icon library to show a hamburger menu (bars) on small screens -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
 
-      <link id="containter">
+<!-- Top Navigation Menu -->
+<div class="topnav">
+  <a href="#home" class="active">Logo</a>
+  <!-- Navigation links (hidden by default) -->
+  <div id="myLinks">
+    <a href="#news">News</a>
+    <a href="#contact">Contact</a>
+    <a href="#about">About</a>
+  </div>
+  <!-- "Hamburger menu" / "Bar icon" to toggle the navigation links -->
+  <a href="javascript:void(0);" class="icon" id="handburgerMenu" onclick="">
+    <i class="fa fa-bars"></i>
+  </a>
+</div>
+      <div id="container">
         <a href="home.html">Home</a>
+
+        <button id="clickHere">Click</button>
       </div>
      
       <% if(serviceworker) { %>
         <script src="<%= serviceworker %>"></script>
         <% } %>
     
-    <script>
-      if('serviceWorker' in navigator){
-        navigator.serviceWorker.register('/service-worker.js')
-      }
-    </script>
   </body>
 </html>
