@@ -3,16 +3,28 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <% if(manifest) { %>
-        <link rel="manifest" href="<%= manifest %>">
-        <% } %>
+    <link rel="manifest" href="manifest.json">
+  </head>
+  
+  <body>
+    <!-- Top Navigation Menu -->
+<div class="topnav">
+  <a href="/" class="active">Logo</a>
+  <!-- Navigation links (hidden by default) -->
+  <div id="myLinks">
+    <a href="#news">News</a>
+    <a href="home.html">Contact</a>
+    <a href="#about">About</a>
+  </div>
+  <!-- "Hamburger menu" / "Bar icon" to toggle the navigation links -->
+  <a href="javascript:void(0);" class="icon" id="handburgerMenu" onclick="">
+    <i class="fa fa-bars"></i>
+  </a>
+</div>
+        <p id="welcome">welcome</p>
     
-    </head>
-
-    <body>
-    <a>welcome</a>
     
     
-   
+    <script src="main.bundle.js"></script>
   </body>
 </html>

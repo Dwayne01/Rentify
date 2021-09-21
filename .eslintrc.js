@@ -22,5 +22,11 @@ module.exports = {
     'space-infix-ops': ['error', {'int32Hint': false}],
     'space-before-function-paren': ['error', 'always'],
     'arrow-spacing': ['error', {'before': true, 'after': true}],
+    // 'no-console': 'error',
+    // 'no-debugger': 'error',
+    'linebreak-style': ['off'],
+    'no-param-reassign': ['off'],
+    'import/prefer-default-export': 'off',
+    'dot-notation': 'off',
   },
 }

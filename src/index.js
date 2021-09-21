@@ -1,11 +1,13 @@
 import './css/styles.css'
+import './css/home.css'
+import './pages/home.html'
+import './js/contact'
+
 import {initializeApp} from 'firebase/app'
 
-const container = document.querySelector('#container')
-console.log(container)
+const handburgerMenu = document.querySelector('#handburgerMenu')
 
-handburgerMenu.addEventListener('click', () => {
-  console.log('here')
+handburgerMenu && handburgerMenu.addEventListener('click', () => {
   const x = document.getElementById('myLinks')
   if (x.style.display === 'block') {
     x.style.display = 'none'
