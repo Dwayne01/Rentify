@@ -4,15 +4,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
-    <meta name="theme-color" content="red">
-    <% if(manifest) { %>
-      <link rel="manifest" href="<%= manifest %>">
-      <% } %>
-  
+    <meta name="theme-color" content="red"> 
+      <link rel="manifest" href="manifest.json">
       <!-- Load an icon library to show a hamburger menu (bars) on small screens -->
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
-    <body>
+       <body>
 
 <!-- Top Navigation Menu -->
 <div class="topnav">
@@ -20,7 +17,7 @@
   <!-- Navigation links (hidden by default) -->
   <div id="myLinks">
     <a href="#news">News</a>
-    <a href="#contact">Contact</a>
+    <a href="home.html">Contact</a>
     <a href="#about">About</a>
   </div>
   <!-- "Hamburger menu" / "Bar icon" to toggle the navigation links -->
@@ -28,15 +25,7 @@
     <i class="fa fa-bars"></i>
   </a>
 </div>
-      <div id="container">
-        <a href="home.html">Home</a>
 
-        <button id="clickHere">Click</button>
-      </div>
-     
-      <% if(serviceworker) { %>
-        <script src="<%= serviceworker %>"></script>
-        <% } %>
-    
+        <script src="serviceworker.js"></script>
   </body>
 </html>

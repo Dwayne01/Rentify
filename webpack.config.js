@@ -29,23 +29,10 @@ module.exports = {
           from: 'service-worker.js',
         },
         {
-          from: 'src/css',
-          to: 'src/css',
-        },
-        {
           from: 'icons/',
           to: 'icons/',
         },
       ]}),
-    new HtmlWebpackPlugin({
-      title: 'Rentify',
-      template: './src/pages/home.html',
-      filename: 'home.html',
-      templateParameters: {
-        'manifest': './manifest.json',
-      },
-      chunks: ['./manifest.json'],
-    }),
 
     new HtmlWebpackPlugin({
       title: 'Rentify',
@@ -74,6 +61,18 @@ module.exports = {
           },
         ],
         exclude: /node_modules/,
+      },
+      {
+        test: /\.html$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]',
+            },
+          },
+        ],
+        exclude: path.resolve(__dirname, './index.html'),
       },
       {
         test: /\.css$/i,
