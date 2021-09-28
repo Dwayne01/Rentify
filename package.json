@@ -46,6 +46,7 @@
     "dotenv": "^10.0.0",
     "firebase": "^9.0.2",
     "lodash": "^4.17.21",
+    "regenerator-runtime": "^0.13.9",
     "workbox-webpack-plugin": "^6.3.0"
   },
   "lint-staged": {

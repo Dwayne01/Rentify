@@ -1,9 +1,19 @@
 import './css/styles.css'
-import './css/home.css'
+import './css/index.css'
 import './pages/home.html'
+import './pages/updateProfile.html'
 import './js/contact'
+import './js/auth'
 
+import 'regenerator-runtime/runtime.js'
 import {initializeApp} from 'firebase/app'
+import {getAuth, onAuthStateChanged} from 'firebase/auth'
+
+const state = {
+  user: null,
+}
+
+window.state = state
 
 const handburgerMenu = document.querySelector('#handburgerMenu')
 
@@ -26,8 +36,6 @@ const firebaseConfig = {
   measurementId: 'G-NEC080LHGV',
 }
 
-initializeApp(firebaseConfig)
-
 if (module.hot) {
   module.hot.accept()
 }
@@ -40,3 +48,40 @@ if ('serviceWorker' in navigator) {
       console.log('Service worker failed!')
     })
 }
+
+const loader = document.getElementById('loading')
+
+window.stopLoader = function () {
+  loader.style.display = 'none'
+}
+
+window.startLoader = function () {
+  loader.style.display = 'block'
+}
+
+window.onload = function () {
+  const auth = getAuth()
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      // User is signed in, see docs for a list of available properties
+      // https://firebase.google.com/docs/reference/js/firebase.User
+      const uid = user.uid
+      window.state.user = uid
+      console.log(user)
+      if (!window.state.user) {
+        window.location.href = '/home.html'
+        console.log('is logged in', uid)
+      }
+    } else {
+      if (window.state.isLoggedIn) {
+        window.location.href = '/'
+        window.state.isLoggedIn = false
+        window.state.user = null
+      }
+      console.log('is not logged in')
+    }
+  })
+}
+
+export const app = initializeApp(firebaseConfig)
+
