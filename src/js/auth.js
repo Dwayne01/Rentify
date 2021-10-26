@@ -3,12 +3,15 @@ import {getAuth, createUserWithEmailAndPassword,
 import {setDoc, doc, getFirestore} from 'firebase/firestore'
 
 const logintbtn = document.querySelector('#form-signin')
+
 logintbtn && logintbtn.addEventListener('submit', (e) => {
   e.preventDefault()
-  window.startLoader()
+  window.stopLoader()
 
+  const errorPtag = document.getElementById("errorMsglogin")
   const email = document.querySelector('#form-signin #email').value
   const password = document.querySelector('#form-signin #password').value
+  errorPtag.innerText = ""
   if (!email || !password) {
     window.stopLoader()
     return
@@ -24,8 +27,19 @@ logintbtn && logintbtn.addEventListener('submit', (e) => {
       window.stopLoader()
     })
     .catch((error) => {
-      console.log(error.message, error.code)
+       console.log(errorPtag)
+      console.log(error.message)
+      console.log(error.code)
+       if(error.code === "auth/wrong-password"){
+         errorPtag.innerText = "Please enter correct password"
+       }
+       else if(error.code === "auth/user-not-found"){
+        errorPtag.innerText = "User does not exists"
+       }
+       
+
       window.stopLoader()
+
     })
 })
 
@@ -34,10 +48,11 @@ const signupbtn = document.querySelector('#form-signup')
 signupbtn && signupbtn.addEventListener('submit', (e) => {
   e.preventDefault()
 
-  window.startLoader()
-
+  // window.startLoader()
+  const errorElement = document.getElementById("errorMsg")
   const email = document.querySelector('#form-signup #email').value
   const password = document.querySelector('#form-signup #password').value
+  errorElement.innerText = ""
 
   if (!email || !password) {
     window.stopLoader()
@@ -53,13 +68,24 @@ signupbtn && signupbtn.addEventListener('submit', (e) => {
 
       const user = userCredential.user
       window.state.user = user
-      window.location.href = '/home.html'
+      window.location.href = '/home.html' 
       window.state.isLoggedIn = true
       console.log(window.state)
       window.stopLoader()
     })
     .catch((error) => {
-      console.log(error.message, error.code)
+      console.log(errorElement);
+      if(error.code === "auth/weak-password"){
+        errorElement.innerText = "Password should be at least 6 characters (auth/weak-password)."
+      }
+      else if(error.code === "auth/email-already-in-use"){
+        errorElement.innerText = "This Email address is already in use"
+      }
+
+      console.log( error.code)
+      console.log(error.message)
+      window.stopLoader();
+      
     })
 })
 
