@@ -24,6 +24,7 @@ module.exports = {
     'arrow-spacing': ['error', {'before': true, 'after': true}],
     // 'no-console': 'error',
     // 'no-debugger': 'error',
+    'no-unused-vars': 'error',
     'linebreak-style': ['off'],
     'no-param-reassign': ['off'],
     'import/prefer-default-export': 'off',

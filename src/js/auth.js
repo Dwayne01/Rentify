@@ -1,7 +1,9 @@
 import {getAuth, createUserWithEmailAndPassword,
   signInWithEmailAndPassword} from 'firebase/auth'
-import {setDoc, doc, getFirestore} from 'firebase/firestore'
+import {setDoc, doc} from 'firebase/firestore'
+import {getUserProfile} from './user'
 
+const profileImg = 'https://firebasestorage.googleapis.com/v0/b/rentify-a0716.appspot.com/o/profile%2Fprofile.png?alt=media&token=4745cdcf-69f2-468f-9614-558ca99daa59'
 const logintbtn = document.querySelector('#form-signin')
 logintbtn && logintbtn.addEventListener('submit', (e) => {
   e.preventDefault()
@@ -16,11 +18,16 @@ logintbtn && logintbtn.addEventListener('submit', (e) => {
 
   const auth = getAuth()
   signInWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
+    .then(async (userCredential) => {
       const user = userCredential.user
       window.state.user = user.uid
-      window.location.href = '/home.html'
+      window.state.email = user.email
       window.state.isLoggedIn = true
+      const userInfo = await getUserProfile(user.uid)
+      window.state.userProfile = userInfo
+      console.log(user.email)
+      window.location.href = userInfo.isProfileUpdated ? '/home.html' :
+        '/updateProfile.html'
       window.stopLoader()
     })
     .catch((error) => {
@@ -46,16 +53,18 @@ signupbtn && signupbtn.addEventListener('submit', (e) => {
   const auth = getAuth()
   createUserWithEmailAndPassword(auth, email, password)
     .then( async (userCredential) => {
-      const db = getFirestore()
+      const db = window.state.db
       await setDoc(doc(db, 'users', userCredential.user.uid), {
-        isLoggedIn: false,
+        isProfileUpdated: false,
+        profileImg,
+        test: 'this is a test',
       })
 
       const user = userCredential.user
-      window.state.user = user
-      window.location.href = '/home.html'
+      window.state.user = user.uid
+      window.state.email = user.email
+      window.location.href = '/updateProfile.html'
       window.state.isLoggedIn = true
-      console.log(window.state)
       window.stopLoader()
     })
     .catch((error) => {
@@ -71,8 +80,7 @@ logout && logout.addEventListener('click', (e) => {
   const auth = getAuth()
   auth.signOut().then(() => {
     window.stopLoader()
-    window.state.user = null
-    window.state.isLoggedIn = false
+    window.state = {}
     window.location.href = '/'
     console.log('Logged out!')
   })
