@@ -6,7 +6,7 @@
 
     <div class = "content-wrap">
         <div class = "topbar">
-         <div>
+
              <p>                 
                         <a href="../pages/profile.html"  >
                            <img  src="../images/back.png"  alt = "back" height="30" width="30" >
@@ -16,49 +16,47 @@
             </div>
             
         </div>
-        <h1>Update Account</h1><br>
-
-        
-        <div class ="profileoptions">
-            <form>
-           <ul>
-               <li>  <label>Full Name <span class="required">*</span><br>
-            </label><input type="text" name="field1" class="fname" 
-            placeholder="First" /> </li>
-
-            <li>  <label>Last Name <span class="required">*</span><br>
-            </label><input type="text" name="field1" class="lname" 
-            placeholder="Last" /> </li>
-
-            <li>  <label>Date of Birth <span class="required">*</span><br>
-            </label><input type="date" name="field1" class="dob" 
-            placeholder="DOB" /> </li>
-
-            <li>
-                <label>Email Address <span class="required">*</span><br>
-                </label>
-                <input type="email" name="field3" class="field-long" placeholder="Email"/>
-            </li>
-
-            <li>
-                <label>Mobile Number <span class="required">*</span><br>
-                </label>
-                <input type="tel" id="phone" name="phone" placeholder="123-455-2678"
-                 pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required>
-            </li>
-
-            <input type="submit" id="btn" value="Next&#8594" /></label>
-
-               
-           </ul>
-           </form>
+        <div class="wrapper">
+            <div class="title">
+              Update Form
+            </div>
+            <div class="form">
+               <div class="inputfield">
+                  <label>First Name</label>
+                  <input type="text" placeholder="First Name" class="input">
+               </div>  
+                <div class="inputfield">
+                  <label>Last Name</label>
+                  <input type="text" 
+                   placeholder="Last Name" class="input">
+               </div>  
+               <div class="inputfield">
+                  <label>Date Of Birth</label>
+                  <input type="date" class="input">
+               </div>  
+              
+                <div class="inputfield">
+                  <label>Email Address</label>
+                  <input type="email" class="input" placeholder="Email">
+               </div> 
+              <div class="inputfield">
+                  <label>Phone Number</label>
+                  <input type="tel"  placeholder="123-455-2678"
+                         pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" class="input">
+               </div> 
+              <div class="inputfield">
+                  <label>Address</label>
+                  <textarea class="textarea"></textarea>
+               </div> 
+              
+                  
+               </div> 
+              <div class="inputfield">
+                <input type="submit" value="Next&#8594" class="btn" id="btn">
+              </div>
+            </div>
         </div>
-        
-        
-
-    </div>
-
     
-
+    
 </body>
 </html> 
