@@ -24,10 +24,7 @@ body{
 }
 
 
-.content-wrap {
-    padding:15px;
-    align-content: center;
-}
+
 
 .topbar {
     display: flex;
@@ -39,24 +36,10 @@ body{
     border:none;
     background-color: var(--black);
 }
-.topbar ul{
-    list-style: none;
-    display: flex;
-}
-.topbar ul li{
-    margin:0 5px;
-}
-.topbar ul li a{
-    color: var(--white);
-}
-.profileinfo img {
-	border-radius: 50%;
-}
-.profileinfo {
-	display: block;
-	text-align: center;
-    color: var(--white);
-}
+
+
+
+
 .profileoptions ul{
     list-style: none;
     padding: 0;
@@ -66,26 +49,25 @@ body{
     margin:10px 0;
     display: block;
 }
-.profileoptions ul li a{
-    text-decoration: none;
-    padding: 5px 0;
-    color: var(--yellow);
-}
 
 
 #btn {
+
+    display:block;
+    justify-content: end;
     background-color: var(--yellow);
     border: none;
     color: var(--black);
     font-style: normal;
     font-weight: bold;
-    padding: 10px;
+    padding: 0.5rem 1rem 0.5rem 1rem ;
     text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 20px;
-    margin: 4px 2px;
-    border-radius: 5px 25px;
+    margin-left: 30%;
+    margin-top: 5%;
+    border-radius: 2rem;
     
   }
 
@@ -93,4 +75,20 @@ body{
     background-color: var(--white);
     color:var(--black);
   }
+  
+  
+
+  .cell,.field-long,.dob,.lname,.fname,#phone{
+      border-radius: 0.5rem;
+      
+  }
+
+  .profileoptions{
+      text-justify:distribute-all-lines;
+  }
+ 
+
+
+    
+
   
