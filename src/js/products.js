@@ -74,6 +74,25 @@ export async function getProductList () {
   }
 }
 
+export async function getProductListByCategory (categoryNames) {
+  const db = getFirestore()
+
+  const productCollection = collection(db, 'products')
+  const q = query(productCollection,
+    where('slug', '==', categoryNames))
+
+  try {
+    const productSnapshot = await (await getDocs(q)).docs
+
+    console.log('product data:', productSnapshot)
+
+    return productSnapshot
+  } catch (error) {
+    console.log('products deleted failed', error)
+    return []
+  }
+}
+
 export async function getWatchlistProduct (productName, userId) {
   try {
     const db = getFirestore()

@@ -8,12 +8,14 @@ import './pages/home.html'
 import './pages/watchlist.html'
 import './pages/updateProfile.html'
 import './pages/singleListing.html'
+import './pages/listing.html'
 import './js/contact'
 import './js/auth'
 import './js/updateProfile'
 import './js/home'
 import './js/watchlist'
 import './js/singleListing'
+import './js/listing'
 
 import {initializeApp} from 'firebase/app'
 import {getAuth, onAuthStateChanged} from 'firebase/auth'
@@ -50,8 +52,16 @@ if ('serviceWorker' in navigator) {
 
 const loader = document.getElementById('loading')
 const header = document.querySelector('.homepage-head')
+const footer = document.querySelector('#footer')
+
 const noSearchHeader = document.querySelector('.header-no-search')
 
+if (footer) {
+  footer.innerHTML = `
+    <p>&#xa9; 2021, Rently
+    </p>
+    `
+}
 if (header) {
   header.innerHTML = `
 <div class="header">
@@ -59,13 +69,8 @@ if (header) {
         <a href="/home.html"><img src="../images/logo.png" alt="logo" /></a>
     </div>
     <div class="custom-search-cont">
-        <span class="search">
-            <i class="fas fa-search"></i>
-        </span>
-        <input type="search" name="search" id="search">
-        <span>
-            <i class="fas fa-filter"></i>
-        </span>
+        <input type="search" name="search" placeholder="Search item"
+         id="search">
     </div>
     <div class="profile-section">
         <img alt="profile" id="profile-image" tabindex="0" />
@@ -201,6 +206,25 @@ profilePic && profilePic.addEventListener('blur', () => {
   }
 })
 
+const search = document.getElementById('search')
+
+search && search.addEventListener('blur', () => {
+  console.log(search.ariaValueMax, 'i work')
+})
+
+search && search.addEventListener('keydown', async (e) => {
+  if (e.key === 'Enter') {
+    const filteredProducts = state.products.filter((data) => {
+      if (data.itemName.toLocaleLowerCase().split(' ')
+        .includes(search.value.toLocaleLowerCase())) {
+        return data
+      }
+    })
+
+    console.log(filteredProducts)
+  }
+})
+
 window.stopLoader = function () {
   loader.style.display = 'none'
 }
@@ -211,7 +235,12 @@ window.startLoader = function () {
 
 window.onload = function () {
   const auth = getAuth()
-  state = JSON.parse(localStorage.getItem('state'))
+
+  const localState = localStorage.getItem('state')
+
+  if (localState) {
+    state = JSON.parse(localStorage.getItem('state'))
+  }
 
   onAuthStateChanged(auth, async (user) => {
     if (user) {
@@ -221,13 +250,14 @@ window.onload = function () {
       state.userProfile = await getUserProfile(uid)
 
       if (!state.isLoggedIn) {
-        console.log({state})
         state.isLoggedIn = true
         localStorage.setItem('state', JSON.stringify(state))
         window.location.href = '/home.html'
       }
     } else {
-      window.location.href = '/'
+      if (state.isLoggedIn) {
+        window.location.href = '/'
+      }
       state = {}
       localStorage.setItem('state', '')
 

@@ -6,53 +6,12 @@
         <meta name="description" content="">
         <meta name="theme-color" content="red">
         <link rel="manifest" href="manifest.json">
-    </head>
-    <body>
-        <div id="loading"></div>
-        <div class="container" id="container">
-          <div class="auth-cont">
-            <div class="form-container sign-up-container">
-                <form id="form-signup">
-                    <h1>Create Account</h1>
-                    <div class="social-container">
-                        <a href="#" class="social">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a href="#" class="social">
-                            <i class="fab fa-google-plus-g"></i>
-                        </a>
-                        <a href="#" class="social">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-                    </div>
-                    <span>or use your email for registration</span>
-                    <input type="email" id="email" placeholder="Email"/>
-                    <input type="password" id="password" placeholder="Password"/>
-                    <input type="submit" value="Sign Up">
-                </form>
-            </div>
-            <div class="form-container sign-in-container">
-                <form id="form-signin">
-                    <h1>Sign in</h1>
-                    <div class="social-container">
-                        <a href="#" class="social">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a href="#" class="social">
-                            <i class="fab fa-google-plus-g"></i>
-                        </a>
-                        <a href="#" class="social">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-                    </div>
-                    <span>or use your account</span>
-                    <input type="email" id="email" name="email" placeholder="Email"/>
-                    <input type="password" id="password" placeholder="Password"/>
-                    <a href="#">Forgot your password?</a>
-                    <input type="submit" value="Sign In">
-                </form>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
 
-            </div>
+    </head>
+    <body class="authentication">
+        <div id="loading"></div>
+        <div class="container login" id="container">
             <div class="overlay-container">
                 <div class="overlay">
                     <div class="overlay-panel overlay-left">
@@ -67,19 +26,42 @@
                     </div>
                 </div>
             </div>
+            <div class="form-container sign-up-container">
+                <form id="form-auth">
+                    <h1>Create Account</h1>
+                    <div class="social-container">
+                        <a href="https://facebook.com/" class="social">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://instagram.com/" class="social">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://twitter.com/" class="social">
+                            <i class="fab fa-twitter-square"></i>
+                        </a>
+                    </div>
+                    <div class="registration-form">
+                        <span>or use your email for registration</span>
+                        <input type="email" id="email" placeholder="Email"/>
+                        <input type="password" id="password" placeholder="Password"/>
+                        <p id="errorMsg"></p>
+                        <input type="submit" value="Sign Up">
+                    </div>
+                    <div class="login-form">
+                        <span>or use your account</span>
+                        <input type="email" class="emailSignin" id="email" name="email" placeholder="Email"/>
+                        <input type="password" class="passwordSignin" id="password" name="password" placeholder="Password"/>
+                        <p id="errorMsglogin"></p>
+                        <a href="#" id="forgotPassword">Forgot your password?</a>
+                        <input type="submit" value="Sign In">
+                    </div>
+                </form>
+            </div>
+
+            
         </div>
 
-        <footer>
-            <p>
-                Created with
-                <i class="fa fa-heart"></i>
-                by
-                <a target="_blank" href="https://florin-pop.com">Florin Pop</a>
-                - Read how I created this and how you can join the challenge
-                <a target="_blank" href="https://www.florin-pop.com/blog/2019/03/double-slider-sign-in-up-form/">here</a>.
-            </p>
-        </footer>
+        <footer id="footer"></footer>
         <script src="serviceworker.js"></script>
     </body>
 </html>
-

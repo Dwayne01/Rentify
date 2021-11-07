@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="theme-color" content="red">
+        <link rel="manifest" href="manifest.json">
+    </head>
+    <body>
+        <div id="loading"></div>
+        <div class="container" id="container">
+          <div class="auth-cont">
+            <div class="form-container sign-up-container">
+                <form id="form-signup">
+                    <h1>Create Account</h1>
+                    <div class="social-container">
+                        <a href="#" class="social">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="social">
+                            <i class="fab fa-google-plus-g"></i>
+                        </a>
+                        <a href="#" class="social">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                    <span>or use your email for registration</span>
+                    <input type="email" id="email" placeholder="Email"/>
+                    <input type="password" id="password" placeholder="Password"/>
+                    <p id="errorMsg"></p>
+                    <input type="submit" value="Sign Up">
+                </form>
+            </div>
+            <div class="form-container sign-in-container">
+                <form id="form-signin">
+                    <h1>Sign in</h1>
+                    <div class="social-container">
+                        <a href="#" class="social">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="social">
+                            <i class="fab fa-google-plus-g"></i>
+                        </a>
+                        <a href="#" class="social">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                    <span>or use your account</span>
+                    <input type="email" class="emailSignin" id="email" name="email" placeholder="Email"/>
+                    <input type="password" class="passwordSignin" id="password" placeholder="Password"/>
+                    <p id="errorMsglogin"></p>
+                    <a href="#" id="forgotPassword">Forgot your password?</a>
+                    <input type="submit" value="Sign In">
+                </form>
+
+            </div>
+            <div class="overlay-container">
+                <div class="overlay">
+                    <div class="overlay-panel overlay-left">
+                        <h1>Welcome Back!</h1>
+                        <p>To keep connected with us please login with your personal info</p>
+                        <button class="ghost" id="goto-signin">Sign In</button>
+                    </div>
+                    <div class="overlay-panel overlay-right">
+                        <h1>Hello, Friend!</h1>
+                        <p>Enter your personal details and start journey with us</p>
+                        <button class="ghost" id="goto-signup">Sign Up</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>
+                Created with
+                <i class="fa fa-heart"></i>
+                by
+                <a target="_blank" href="https://florin-pop.com">Florin Pop</a>
+                - Read how I created this and how you can join the challenge
+                <a target="_blank" href="https://www.florin-pop.com/blog/2019/03/double-slider-sign-in-up-form/">here</a>.
+            </p>
+        </footer>
+        <script src="serviceworker.js"></script>
+    </body>
+</html>
+
