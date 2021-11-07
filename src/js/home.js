@@ -1,43 +1,39 @@
 import {addToWatchlist, getProductList} from './products'
 
-let isMenuVisible = false
-const profilePic = document.getElementById('profile-image')
-const menu = document.querySelector('.menu')
-const initials = document.querySelector('.initials')
-const fullName = document.querySelector('.menu-name')
-const email = document.querySelector('.menu-email')
 const mapEle = document.getElementById('map')
 const search = document.getElementById('search')
 
-const state = {
+let state = {
   products: [],
   isPressed: {},
 }
 
 setTimeout(async () => {
-  if (profilePic) {
-    const userInfo = window.state.userProfile
-    fullName.innerText = `${userInfo.firstName} ${userInfo.lastName}`
-    email.innerText = window.state.email
-    profilePic.src = userInfo.profileImg
-    initials.innerHTML = userInfo.firstName[0] + userInfo.lastName[0]
+  const isPath = window.location.href.split('/').includes('home.html')
 
-    const isPath = window.location.href.split('/').includes('home.html')
+  if (!isPath) return
+  const products = await getProductList()
+  const cardCont = document.querySelector('.features-listings')
+  cardCont.innerHTML = ''
 
-    if (!isPath) return
-    const products = await getProductList()
-    state.products = products
-    const cardCont = document.querySelector('.features-listings')
-    cardCont.innerHTML = ''
+  state.products = products.map((product) => {
+    return product.data()
+  })
 
-    if (!cardCont) return
+  if (!cardCont) return
 
-    window.startLoader()
-    for (const product of products) {
-      cardCont.innerHTML += `
+  window.startLoader()
+  for (const product of products) {
+    const prodData = product.data()
+    cardCont.innerHTML += `
+            <div>
                   <div class="card-container">
                       <div class="card-img-container">
-                            <img src=${product.imgUrls[0]} alt="">
+                            <a href="./singleListing.html?
+                            listing=${product.id}">
+                              <img src=${prodData.imgUrls[0]} 
+                                alt="product image" />
+                            </a>
                             <div class="favorite-cont">
                               <a class="favorite">
                                 <i class="fas fa-star"></i>
@@ -46,26 +42,27 @@ setTimeout(async () => {
                       </div>
                       <div class="container__profile">
                           <div class="container__profile__text">
-                              <h3>${product.itemName}</h3>
+                              <h3>${prodData.itemName}</h3>
                               <p>
-                                  <b>${product.userFirstName}</b>
+                                  <b>${prodData.userFirstName}</b>
                               </p>
                               <div class="card-bottom">
-                                  <p>C$${product.weeklyPrice}/day</p>
-                                  <p>${product.city}</p>
+                                  <p>C$${prodData.weeklyPrice}/day</p>
+                                  <p>${prodData.city}</p>
                               </div>
                           </div>
                       </div>
                   </div>
+            </div>
       `
-    }
-
-    initMap(products)
   }
+
+  initMap(products)
 }, 2000)
 
 setTimeout(() => {
   const isPath = window.location.href.split('/').includes('home.html')
+  state = {...JSON.parse(localStorage.getItem('state')), ...state}
 
   if (!isPath) return
   const favoritesBtn = document.querySelectorAll('.favorite i')
@@ -73,14 +70,16 @@ setTimeout(() => {
     ele.addEventListener('click', async () => {
       const listing = state.products[index]
       const {itemUrl, itemName, weeklyPrice, city, imgUrls} = listing
+
       const params = {
         itemUrl,
-        userId: window.state.user,
+        userId: state.user,
         itemName,
         weeklyPrice,
         city,
         imgUrl: imgUrls[0],
       }
+
       state.isPressed[itemName] = state.isPressed[itemName] ? false : true
 
       ele.style.color = !state.isPressed[itemName] ? 'white' : 'yellow'
@@ -90,19 +89,6 @@ setTimeout(() => {
     })
   })
 }, 4000)
-
-profilePic && profilePic.addEventListener('click', () => {
-  menu.classList.toggle('showmenu')
-  menu.classList.toggle('hidemenu')
-  isMenuVisible = !isMenuVisible
-})
-
-profilePic && profilePic.addEventListener('blur', () => {
-  if (isMenuVisible) {
-    menu.classList.toggle('hidemenu')
-    isMenuVisible = false
-  }
-})
 
 search && search.addEventListener('blur', () => {
   console.log(search.ariaValueMax, 'i work')
@@ -124,9 +110,11 @@ search && search.addEventListener('keydown', async (e) => {
 function initMap (products) {
   if (!mapEle) return
   // The location of Uluru
-  const locations = products.map((product, index) =>
-    ([`${product.currency} ${product.weeklyPrice}`,
-      product.lat, product.lng, index + 1]))
+  const locations = products.map((product, index) => {
+    const prod = product.data()
+    return ([`${prod.currency} ${prod.weeklyPrice}`,
+      prod.lat, prod.lng, index + 1])
+  })
 
   const map = new google.maps.Map(mapEle, {
     zoom: 10,

@@ -1,9 +1,9 @@
-import {doc, getDoc, setDoc} from 'firebase/firestore'
+import {doc, getDoc, setDoc, getFirestore} from 'firebase/firestore'
 import {getStorage, ref, uploadBytes, getDownloadURL} from 'firebase/storage'
 
 export async function getUserProfile (uid) {
   console.log(`user id ${uid}`)
-  const db = window.state.db
+  const db = getFirestore()
   const citiesCol = doc(db, `users/${uid}`)
   const citySnapshot = await getDoc(citiesCol)
 
@@ -15,7 +15,7 @@ export async function getUserProfile (uid) {
 
 export async function updateUserProfile (params, uid) {
   try {
-    const db = window.state.db
+    const db = getFirestore()
     await setDoc(doc(db, 'users', uid), params)
     console.log('profile updated successfully')
     return true

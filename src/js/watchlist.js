@@ -1,12 +1,15 @@
 import {addToWatchlist, getAllWatchlistByUser} from './products'
 
+let state = {}
+
 setTimeout(async () => {
   const isPath = window.location.href.split('/').includes('watchlist.html')
+  state = {...state, ...JSON.parse(localStorage.getItem('state'))}
 
   if (!isPath) return
 
   window.startLoader()
-  const products = await getAllWatchlistByUser(window.state.user)
+  const products = await getAllWatchlistByUser(state.user)
   state.products = products
   const cardCont = document.querySelector('.watchlist-listings')
   cardCont.innerHTML = ''
@@ -44,6 +47,7 @@ setTimeout(async () => {
 
 setTimeout(() => {
   const favoritesBtn = document.querySelectorAll('.favorite i')
+
   favoritesBtn.forEach((ele, index) => {
     ele.addEventListener('click', async () => {
       const listing = state.products[index]
@@ -51,7 +55,7 @@ setTimeout(() => {
       const {itemUrl, itemName, weeklyPrice, city, imgUrl} = listing
       const params = {
         itemUrl,
-        userId: window.state.user,
+        userId: state.user,
         itemName,
         weeklyPrice,
         city,

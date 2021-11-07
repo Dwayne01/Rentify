@@ -1,0 +1,139 @@
+.listing-detail-page {
+    padding-top: 100px;
+}
+
+.listing-img-container h1{
+    margin-bottom: 20px;
+}
+
+
+.listing-main-img img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.other-listing-img {
+    display: flex;
+    margin-top: 10px;
+    justify-content: space-between;
+}
+
+
+.container-auto .row{
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 0;
+}
+
+.container-auto .row a{
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 12px;
+    background-color: #FF4B2B;
+}
+
+.container-auto .row a i {
+    margin-right: 10px;
+    line-height: 1.2;
+}
+
+.other-listing-img img {
+    width: 23%;
+    height: 100px;
+    border-radius: 10px;
+}
+
+.container-auto {
+    width: 50%;
+    margin: auto;
+    text-align: justify;
+}
+
+.listing-description {
+    margin-top: 30px;
+}
+
+.listing-description h2 {
+    text-align: left;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.listing-map{
+    padding: 100px;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+.listing-pricing button {
+    margin-top: 20px;
+}
+
+.agent-cont{
+  margin-top: 40px;
+}
+
+.agent-cont .agent-info {
+    background-color: rgb(249, 248, 254);
+    display: flex;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.agent-cont .agent-info img{
+    height: 70px;
+    width: 70px;
+    border-radius: 50px;
+}
+
+.agent-card-info {
+    width: 100%;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.listing-pricing {
+    background-color: rgb(249, 248, 254);
+    margin-top: 40px;
+    text-align: center;
+    padding: 20px;
+    border-radius: 20px;
+}
+
+.listing-pricing button {
+    width: 200px;
+}
+
+.agent-info strong {
+    padding: 0px 20px;
+}
+
+
+.agent-info a {
+    width: auto;
+    margin: 1% 5%;
+    flex-grow: 1;
+    display: inline-block;
+    padding: 15px;
+    color: white;
+    text-align: center;
+    background: #FF4B2B;
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 30px;
+    justify-content: space-between;
+}
+
+.agent-detail-cont{
+    width: 100%;
+}
+
+@media screen and (max-width: 700px) {
+    .container-auto {
+        width: 80%;
+    }
+}

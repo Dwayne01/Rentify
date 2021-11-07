@@ -5,7 +5,9 @@ import {updateUserProfile, uploadImage} from './user'
 const updateProfileForm = document.querySelector('#form-profile')
 
 const handleProfileUpdate = (params) => {
-  const res = updateUserProfile(params, window.state.user)
+  state = JSON.parse(localStorage.getItem('state'))
+
+  const res = updateUserProfile(params, state.user)
   window.startLoader()
   setTimeout(() => {
     window.stop()

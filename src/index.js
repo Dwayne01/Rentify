@@ -3,25 +3,26 @@ import './css/styles.css'
 import './css/index.css'
 import './css/home.css'
 import './css/watchlist.css'
+import './css/singleListing.css'
 import './pages/home.html'
 import './pages/watchlist.html'
 import './pages/updateProfile.html'
+import './pages/singleListing.html'
 import './js/contact'
 import './js/auth'
 import './js/updateProfile'
 import './js/home'
 import './js/watchlist'
+import './js/singleListing'
 
 import {initializeApp} from 'firebase/app'
 import {getAuth, onAuthStateChanged} from 'firebase/auth'
-import {getFirestore} from '@firebase/firestore'
 import {getUserProfile} from './js/user'
 
-const state = {
+let state = {
   user: null,
+  isLoggedIn: false,
 }
-
-window.state = state
 
 const firebaseConfig = {
   apiKey: 'AIzaSyBE8v8vX6rs26RYCjgbPZo6_c8JtKTYlCc',
@@ -48,8 +49,157 @@ if ('serviceWorker' in navigator) {
 }
 
 const loader = document.getElementById('loading')
+const header = document.querySelector('.homepage-head')
+const noSearchHeader = document.querySelector('.header-no-search')
 
-console.log({loader})
+if (header) {
+  header.innerHTML = `
+<div class="header">
+    <div class="logo">
+        <a href="/home.html"><img src="../images/logo.png" alt="logo" /></a>
+    </div>
+    <div class="custom-search-cont">
+        <span class="search">
+            <i class="fas fa-search"></i>
+        </span>
+        <input type="search" name="search" id="search">
+        <span>
+            <i class="fas fa-filter"></i>
+        </span>
+    </div>
+    <div class="profile-section">
+        <img alt="profile" id="profile-image" tabindex="0" />
+        <div class="menu hidemenu">
+            <ul id="menu-list">
+                <li>
+                    <div class="initials"></div>
+                    <span class="user-name">
+                        <div class="menu-name"></div>
+                        <div class="menu-email"></div>
+                    </span>
+                </li>
+                <li>
+                    <div class="menu-icon">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <span class="menu-title">
+                        <a href="">Profile</a>
+                    </span>
+                </li>
+                <li>
+                    <div class="menu-icon">
+                        <i class="fas fa-plus-square"></i>
+                    </div>
+                    <span class="menu-title">
+                        <a href="">Create Listing</a>
+                    </span>
+                </li>
+                <a href="/watchlist.html">
+                    <li>
+                        <div class="menu-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <span class="menu-title">
+                        Watchlist
+                        </span>
+                    </li>
+                </a>
+                <a id="logout" href="">
+                    <li>
+                        <div class="menu-icon">
+                            <i class="fas fa-sign-out-alt"></i>
+                        </div>
+                        <span class="menu-title">
+                            Logout
+                        </span>
+                    </li>
+                </a>
+            </ul>
+        </div>
+    </div>
+</div>
+`
+}
+
+if (noSearchHeader) {
+  noSearchHeader.innerHTML = `
+<div class="header">
+<div class="logo">
+    <a href="/home.html"><img src="../images/logo.png" alt="logo" /></a>
+</div>
+
+<div class="profile-section">
+    <img alt="profile" id="profile-image" tabindex="0" />
+    <div class="menu hidemenu">
+        <ul id="menu-list">
+            <li>
+                <div class="initials"></div>
+                <span class="user-name">
+                    <div class="menu-name"></div>
+                    <div class="menu-email"></div>
+                </span>
+            </li>
+            <li>
+                <div class="menu-icon">
+                    <i class="fas fa-user"></i>
+                </div>
+                <span class="menu-title">
+                    <a href="">Profile</a>
+                </span>
+            </li>
+            <li>
+                <div class="menu-icon">
+                    <i class="fas fa-plus-square"></i>
+                </div>
+                <span class="menu-title">
+                    <a href="">Create Listing</a>
+                </span>
+            </li>
+            <a href="/watchlist.html">
+                <li>
+                    <div class="menu-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <span class="menu-title">
+                    Watchlist
+                    </span>
+                </li>
+            </a>
+            <a id="logout" href="">
+                <li>
+                    <div class="menu-icon">
+                        <i class="fas fa-sign-out-alt"></i>
+                    </div>
+                    <span class="menu-title">
+                        Logout
+                    </span>
+                </li>
+            </a>
+        </ul>
+    </div>
+</div>
+</div>
+`
+}
+const initials = document.querySelector('.initials')
+const fullName = document.querySelector('.menu-name')
+const email = document.querySelector('.menu-email')
+let isMenuVisible = false
+const profilePic = document.getElementById('profile-image')
+const menu = document.querySelector('.menu')
+
+profilePic && profilePic.addEventListener('click', () => {
+  menu.classList.toggle('showmenu')
+  menu.classList.toggle('hidemenu')
+  isMenuVisible = !isMenuVisible
+})
+
+profilePic && profilePic.addEventListener('blur', () => {
+  if (isMenuVisible) {
+    menu.classList.toggle('hidemenu')
+    isMenuVisible = false
+  }
+})
 
 window.stopLoader = function () {
   loader.style.display = 'none'
@@ -61,30 +211,38 @@ window.startLoader = function () {
 
 window.onload = function () {
   const auth = getAuth()
+  state = JSON.parse(localStorage.getItem('state'))
+
   onAuthStateChanged(auth, async (user) => {
     if (user) {
-      // User is signed in, see docs for a list of available properties
-      // https://firebase.google.com/docs/reference/js/firebase.User
       const uid = user.uid
-      window.state.user = uid
-      window.state.email = user.email
-      window.state.userProfile = await getUserProfile(uid)
-      if (!window.state.user) {
+      state.user = uid
+      state.email = user.email
+      state.userProfile = await getUserProfile(uid)
+
+      if (!state.isLoggedIn) {
+        console.log({state})
+        state.isLoggedIn = true
+        localStorage.setItem('state', JSON.stringify(state))
         window.location.href = '/home.html'
-        console.log('is logged in', userProfile)
       }
     } else {
-      if (window.state.isLoggedIn) {
-        window.location.href = '/'
-        window.state.user = {}
-      }
+      window.location.href = '/'
+      state = {}
+      localStorage.setItem('state', '')
+
       console.log('is not logged in')
     }
   })
+
+  if (profilePic) {
+    const userInfo = state.userProfile
+    fullName.innerText = `${userInfo.firstName} ${userInfo.lastName}`
+    email.innerText = state.email
+    profilePic.src = userInfo.profileImg
+    initials.innerHTML = userInfo.firstName[0] + userInfo.lastName[0]
+  }
 }
 
 const firebaseApp = initializeApp(firebaseConfig)
-window.state.firestore = firebaseApp
-window.state.db = getFirestore()
-// const storage = getStorage(firebaseApp)
-// window.state.storage = storage
+state.firestore = firebaseApp
