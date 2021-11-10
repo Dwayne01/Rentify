@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css'>
+    <link rel="stylesheet" href="../css/add_item.css">
+    <script src="../js/add_item.js" defer></script>
+    <title>Add Item</title>
+</head>
+<body>
+    <form>
+        <div class="div-searchbox">
+            <label for="searchbox" class="searchbox">Search your need!</label><br>
+            <input type="text" id="searchbox" name="searchbox" placeholder="Search"><br>
+        </div>
+        <h2>Add a new post</h2>
+        <div class="lbl-addphotos">
+            <label class="add-photos">Add Photos</label>
+        </div>
+        <div class="pic-container">
+            <div class="box1"><label ><img src="../images/plus.png" alt="plus" id="image" class="plus-box1" onclick = "pro1()";><input type = "file" id = "file"></label></div>
+            <div class="box2"><label><img src="../images/plus.png" alt="plus" id="image" class="plus-box2" onclick = "pro1()";><input type = "file" id = "file"></label></div>
+            <div class="box3"><label><img src="../images/plus.png" alt="plus" id="image" class="plus-box3" onclick = "pro1()";><input type = "file" id = "file"></label></div>
+        </div>
+        <div class="post-title">
+            <label class="lbl-post-title">Posting Title</label><br>
+            <input type="text" id="lbl-post-title" class="id-post-title" name="lbl-post-title" placeholder="Title">
+        </div>
+        <div class="post-price">
+            <label class="lbl-post-price">Price</label><br>
+            <input type="number" id="lbl-post-price" class="id-post-price" name="lbl-post-price" placeholder="$">
+            <label class="lbl-post-price-day">/day</label>
+            <input type="number" id="lbl-post-price-day" class="id-post-price-day" name="lbl-post-price-day" placeholder="$">
+            <label class="lbl-post-price-month">/month</label>
+            <input type="number" id="lbl-post-price-month" class="id-post-price-month" name="lbl-post-price-month" placeholder="$">
+            <label class="lbl-post-price-year">/year</label>
+        </div>
+        <div class="category">
+            <label for="lbl-post-category" class="lbl-post-category">Category</label><br>
+            <select name="lbl-post-category" id="lbl-post-category">
+                <option value="value1">value1</option>
+                <option value="value2">value2</option>
+                <option value="value3">value3</option>
+                <option value="value4">value4</option>
+              </select>
+        </div>
+        <div class="condition">
+            <label for="lbl-post-condition" class="lbl-post-condition">Condition</label><br>
+            <select name="lbl-post-condition" id="lbl-post-condition">
+                <option value="value1">value1</option>
+                <option value="value2">value2</option>
+                <option value="value3">value3</option>
+                <option value="value4">value4</option>
+              </select>
+
+        </div>
+        <div class="Location">
+            <label class="lbl-post-location">Location</label><br>
+            <div class="city1">
+                <label class="lbl-post-city">City</label><br>
+                <input type="text" id="lbl-post-city" class="id-post-city" name="lbl-post-city" placeholder="City">
+            </div>
+            <div class="province1">
+                <label class="lbl-post-province">Province</label><br>
+                <input type="text" id="lbl-post-province" class="id-post-province" name="lbl-post-province" placeholder="Province">
+            </div>
+            <div class="postalcode1">
+                <label class="lbl-post-postalcode">Postal Code</label><br>
+                <input type="text" id="lbl-post-postalcode" class="id-post-postalcode" name="lbl-post-postalcode" placeholder="Postalcode">
+            </div>
+           
+             
+        </div>
+        <div class="Date">
+            <label for="post-date" class="post-date">Available Date</label><br>
+            <div class="from1">
+                <label for="post-date-from" class="post-date-from">From</label><br>
+                <input type="date" id="post-date-from" name="post-date-from">
+            </div>
+            <div class="to1">
+                <label for="post-date-to" class="post-date-to">To</label><br>
+                <input type="date" id="post-date-to" name="post-date-to">
+            </div>
+             
+        </div>
+
+        <div class="deposit">
+            <label for="post-deposit" class="post-deposit">Deposit</label><br>
+            <input type="number" id="post-deposit-amount" name="post-deposit-amount" placeholder="$"> 
+
+        </div>
+        <div class="description">
+            <label for="post-description" class="post-description">Description</label><br>
+            <input type="text" id="post-description1" name="post-description1" placeholder="Description about product"> 
+        </div>
+        <div class="checkbox1">
+             <input type="checkbox" id="terms" name="terms" value="terms and conditions">
+             <label for="terms" class="terms-text"> I agree with Terms and Conditions</label><br>
+        </div>
+        <div class="btndone">
+            <button type="submit" class="done" id="done">Post</button>
+        </div>
+      </form>
+
+</body>
+</html>
