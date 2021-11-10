@@ -1,10 +1,12 @@
-
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
 
 * {
 	box-sizing: border-box;
 }
 
+ #forgotPassword{
+	width: 190%;
+}
 .container {
 	background: #f6f5f7;
 	display: flex;
@@ -33,6 +35,8 @@
 h1 {
 	font-weight: bold;
 	margin: 0;
+	font-size: 110%;
+	color: rgb(247,187,13);
 }
 
 h2 {
@@ -45,6 +49,8 @@ p {
 	line-height: 20px;
 	letter-spacing: 0.5px;
 	margin: 20px 0 30px;
+	color: white;
+	
 }
 
 span {
@@ -60,16 +66,17 @@ a {
 
 button, input[type='submit'] {
 	border-radius: 20px;
-	border: 1px solid #FF4B2B;
-	background-color: #FF4B2B;
-	color: #FFFFFF;
-	font-size: 12px;
+	border: 1px solid rgb(25,24,36);
+	background-color: rgb(247,187,13);
+	color: rgb(25,24,36);
+	font-size: 10px;
 	font-weight: bold;
-	padding: 12px 45px;
+	text-align: center;
+	padding: 10px 10px;
 	letter-spacing: 1px;
 	text-transform: uppercase;
 	transition: transform 80ms ease-in;
-    width: 160px;
+    width: 80px;
 }
 
 button, input[type='submit']:active {
@@ -82,7 +89,8 @@ button, input[type='submit']:focus {
 
 button.ghost {
 	background-color: transparent;
-	border-color: #FFFFFF;
+	border-color: rgb(247,187,13);
+	color: white;
 }
 
 form {
@@ -101,7 +109,7 @@ input {
 	border: none;
 	padding: 12px 15px;
 	margin: 8px 0;
-	width: 100%;
+	width: 120%;
 }
 
 .form-container {
@@ -163,9 +171,9 @@ input {
 }
 
 .overlay {
-	background: #FF416C;
-	background: -webkit-linear-gradient(to right, #FF4B2B, #FF416C);
-	background: linear-gradient(to right, #FF4B2B, #FF416C);
+	background: rgb(25,24,36);
+	background: -webkit-linear-gradient(to right, rgb(25,24,36), rgb(25,24,36));
+	background: linear-gradient(to right, rgb(25,24,36), rgb(25,24,36));
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: 0 0;
@@ -216,6 +224,7 @@ input {
 
 .social-container {
 	margin: 20px 0;
+	width: 190%;
 }
 
 .social-container a {
@@ -230,8 +239,8 @@ input {
 }
 
 footer {
-    background-color: #222;
-    color: #fff;
+    background-color: rgb(247,187,13);
+    color: black;
     font-size: 14px;
     bottom: 0;
     position: fixed;
@@ -240,6 +249,7 @@ footer {
     text-align: center;
     z-index: 999;
 }
+
 
 footer p {
     margin: 10px 0;
@@ -252,4 +262,70 @@ footer i {
 footer a {
     color: #3c97bf;
     text-decoration: none;
+}
+#errorMsg{
+	margin: 0;
+	color: red;
+	align-self: start;
+}
+#errorMsglogin{
+	margin:0;
+	color: red;
+	align-self: start;
+}
+@media (max-width: 520px) {
+	h1{
+		font-size: 200%;
+	
+
+	}
+	button, input[type='submit'] {
+		border-radius: 20px;
+		font-size: 12px;
+		font-weight: bold;
+		padding: 12px 45px;
+		letter-spacing: 1px;
+		text-transform: uppercase;
+		transition: transform 80ms ease-in;
+		width: 160px;
+	}
+	p{
+		font-size: 17px;
+	}
+	.sign-up-container{
+
+		height: 70%;
+		position: fixed;
+		top: 189px;
+		width: 100%;
+	
+	}
+	.sign-in-container{
+
+		height: 70%;
+		position: fixed;
+		top: 189px;
+		width: 100%;
+	
+	}
+	input{
+		width:100%;
+		margin-left: 10px;
+		margin-right: 10px;
+	}
+	.overlay-container{
+
+		height: 30%;
+		width: 100%;
+		position: fixed;
+		left: 0px;
+	
+	}
+	.container.right-panel-active .overlay-container {
+		transform: translateX(0%);
+	}
+
+	.container.right-panel-active .sign-up-container {
+		transform: translateX(0%);
+	}
 }
