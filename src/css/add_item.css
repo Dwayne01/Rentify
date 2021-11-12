@@ -29,34 +29,40 @@
     left: 457px;
     margin-top: 10px;
 }
-form{
+form {
     background: black;
     position: relative;
 }
-.searchbox{
+.searchbox {
     color: white;
 }
-h2{
+
+h2 {
     color: white;
 }
-.lbl-post-title{
+
+/* Item Title */
+.itemTitle-label{
     color: rgb(247,187,13);
 }
-#lbl-post-title{
+#itemTitle{
     border-radius: 9px;
     margin-top: 5px;
     margin-bottom: 10px;
     max-width: 650px;
 }
-.lbl-post-price{
-    margin-bottom: 10px;
-}
-.id-post-title{
+.itemTitle{
     width: 100%;
     background: grey;
     height: 25px;
     color: black;
 }
+
+
+.lbl-post-price{
+    margin-bottom: 10px;
+}
+
 ::placeholder {
     color: black;
     opacity: 1; /* Firefox */
@@ -169,7 +175,7 @@ h2{
     height: 300px;
     position: absolute;
 }
-#file{
+#itemFile{
     display: none;
 }
 .plus-box2{

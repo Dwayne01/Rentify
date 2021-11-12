@@ -1,9 +1,12 @@
 import './css/styles.css'
 import './css/index.css'
+import './css/add_item.css'
 import './pages/home.html'
 import './pages/updateProfile.html'
+import './pages/add_item.html'
 import './js/contact'
 import './js/auth'
+import './js/add_item'
 
 import 'regenerator-runtime/runtime.js'
 import {initializeApp} from 'firebase/app'
