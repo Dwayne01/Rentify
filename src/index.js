@@ -1,30 +1,33 @@
+import 'regenerator-runtime/runtime.js'
 import './css/styles.css'
 import './css/index.css'
+import './css/home.css'
+import './css/watchlist.css'
+import './css/singleListing.css'
+import './css/createListing.css'
 import './pages/home.html'
+import './pages/watchlist.html'
 import './pages/updateProfile.html'
+import './pages/singleListing.html'
+import './pages/listing.html'
+import './pages/createListing.html'
 import './js/contact'
 import './js/auth'
+import './js/updateProfile'
+import './js/home'
+import './js/watchlist'
+import './js/singleListing'
+import './js/listing'
+import './js/createListing.js'
 
-import 'regenerator-runtime/runtime.js'
 import {initializeApp} from 'firebase/app'
 import {getAuth, onAuthStateChanged} from 'firebase/auth'
+import {getUserProfile} from './js/user'
 
-const state = {
+let state = {
   user: null,
+  isLoggedIn: false,
 }
-
-window.state = state
-
-const handburgerMenu = document.querySelector('#handburgerMenu')
-
-handburgerMenu && handburgerMenu.addEventListener('click', () => {
-  const x = document.getElementById('myLinks')
-  if (x.style.display === 'block') {
-    x.style.display = 'none'
-  } else {
-    x.style.display = 'block'
-  }
-})
 
 const firebaseConfig = {
   apiKey: 'AIzaSyBE8v8vX6rs26RYCjgbPZo6_c8JtKTYlCc',
@@ -34,6 +37,7 @@ const firebaseConfig = {
   messagingSenderId: '231540006222',
   appId: '1:231540006222:web:64129138773c1af280521f',
   measurementId: 'G-NEC080LHGV',
+  databaseURL: 'https://rentify-a0716-default-rtdb.firebaseio.com/',
 }
 
 if (module.hot) {
@@ -50,6 +54,183 @@ if ('serviceWorker' in navigator) {
 }
 
 const loader = document.getElementById('loading')
+const header = document.querySelector('.homepage-head')
+const footer = document.querySelector('#footer')
+
+const noSearchHeader = document.querySelector('.header-no-search')
+
+if (footer) {
+  footer.innerHTML = `
+    <p>&#xa9; 2021, Rently
+    </p>
+    `
+}
+if (header) {
+  header.innerHTML = `
+<div class="header">
+    <div class="logo">
+        <a href="/home.html"><img src="../images/logo.png" alt="logo" /></a>
+    </div>
+    <div class="custom-search-cont">
+        <input type="search" name="search" placeholder="Search item"
+         id="search">
+    </div>
+    <div class="profile-section">
+        <img alt="profile" id="profile-image" tabindex="0" />
+        <div class="menu hidemenu">
+            <ul id="menu-list">
+                <li>
+                    <div class="initials"></div>
+                    <span class="user-name">
+                        <div class="menu-name"></div>
+                        <div class="menu-email"></div>
+                    </span>
+                </li>
+                <li>
+                    <div class="menu-icon">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <span class="menu-title">
+                        <a href="">Profile</a>
+                    </span>
+                </li>
+                <li>
+                <a href="/createListing.html">
+                  <div class="menu-icon">
+                      <i class="fas fa-plus-square"></i>
+                  </div>
+                  <span class="menu-title">
+                      <a href="">Create Listing</a>
+                  </span>
+                </a>
+            </li>
+            <li>
+                <a href="/watchlist.html">
+                    <div class="menu-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <span class="menu-title">
+                    Watchlist
+                    </span>
+                </a>
+            </li>
+            <li>
+                <a id="logout" href="">
+                    <div class="menu-icon">
+                        <i class="fas fa-sign-out-alt"></i>
+                    </div>
+                    <span class="menu-title">
+                        Logout
+                    </span>
+                </a>
+            </li>
+            </ul>
+        </div>
+    </div>
+</div>
+`
+}
+
+if (noSearchHeader) {
+  noSearchHeader.innerHTML = `
+<div class="header">
+<div class="logo">
+    <a href="/home.html"><img src="../images/logo.png" alt="logo" /></a>
+</div>
+
+<div class="profile-section">
+    <img alt="profile" id="profile-image" tabindex="0" />
+    <div class="menu hidemenu">
+        <ul id="menu-list">
+            <li>
+                <div class="initials"></div>
+                <span class="user-name">
+                    <div class="menu-name"></div>
+                    <div class="menu-email"></div>
+                </span>
+            </li>
+            <li>
+                <div class="menu-icon">
+                    <i class="fas fa-user"></i>
+                </div>
+                <span class="menu-title">
+                    <a href="">Profile</a>
+                </span>
+            </li>
+            <li>
+                <a href="/createListing.html">
+                  <div class="menu-icon">
+                      <i class="fas fa-plus-square"></i>
+                  </div>
+                  <span class="menu-title">
+                      <a href="">Create Listing</a>
+                  </span>
+                </a>
+            </li>
+            <li>
+                <a href="/watchlist.html">
+                    <div class="menu-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <span class="menu-title">
+                    Watchlist
+                    </span>
+                </a>
+            </li>
+            <li>
+                <a id="logout" href="">
+                    <div class="menu-icon">
+                        <i class="fas fa-sign-out-alt"></i>
+                    </div>
+                    <span class="menu-title">
+                        Logout
+                    </span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+</div>
+`
+}
+const initials = document.querySelector('.initials')
+const fullName = document.querySelector('.menu-name')
+const email = document.querySelector('.menu-email')
+let isMenuVisible = false
+const profilePic = document.getElementById('profile-image')
+const menu = document.querySelector('.menu')
+
+profilePic && profilePic.addEventListener('click', () => {
+  menu.classList.toggle('showmenu')
+  menu.classList.toggle('hidemenu')
+  isMenuVisible = !isMenuVisible
+})
+
+profilePic && profilePic.addEventListener('blur', () => {
+  if (isMenuVisible) {
+    menu.classList.toggle('hidemenu')
+    isMenuVisible = false
+  }
+})
+
+const search = document.getElementById('search')
+
+search && search.addEventListener('blur', () => {
+  console.log(search.ariaValueMax, 'i work')
+})
+
+search && search.addEventListener('keydown', async (e) => {
+  if (e.key === 'Enter') {
+    const filteredProducts = state.products.filter((data) => {
+      if (data.itemName.toLocaleLowerCase().split(' ')
+        .includes(search.value.toLocaleLowerCase())) {
+        return data
+      }
+    })
+
+    console.log(filteredProducts)
+  }
+})
 
 window.stopLoader = function () {
   loader.style.display = 'none'
@@ -61,27 +242,44 @@ window.startLoader = function () {
 
 window.onload = function () {
   const auth = getAuth()
-  onAuthStateChanged(auth, (user) => {
+
+  const localState = localStorage.getItem('state')
+
+  if (localState) {
+    state = JSON.parse(localState)
+  }
+
+  onAuthStateChanged(auth, async (user) => {
     if (user) {
-      // User is signed in, see docs for a list of available properties
-      // https://firebase.google.com/docs/reference/js/firebase.User
       const uid = user.uid
-      window.state.user = uid
-      console.log(user)
-      if (!window.state.user) {
+      state.user = uid
+      state.email = user.email
+      state.userProfile = await getUserProfile(uid)
+
+      if (!state.isLoggedIn) {
+        state.isLoggedIn = true
+        localStorage.setItem('state', JSON.stringify(state))
         window.location.href = '/home.html'
-        console.log('is logged in', uid)
       }
     } else {
-      if (window.state.isLoggedIn) {
+      if (state.isLoggedIn) {
         window.location.href = '/'
-        window.state.isLoggedIn = false
-        window.state.user = null
       }
+      state = {}
+      localStorage.setItem('state', '')
+
       console.log('is not logged in')
     }
   })
+
+  if (profilePic) {
+    const userInfo = state.userProfile
+    fullName.innerText = `${userInfo.firstName} ${userInfo.lastName}`
+    email.innerText = state.email
+    profilePic.src = userInfo.profileImg
+    initials.innerHTML = userInfo.firstName[0] + userInfo.lastName[0]
+  }
 }
 
-export const app = initializeApp(firebaseConfig)
-
+const firebaseApp = initializeApp(firebaseConfig)
+state.firestore = firebaseApp

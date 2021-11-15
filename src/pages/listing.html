@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="manifest" href="manifest.json">
+    <script src="https://kit.fontawesome.com/d27ab00225.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div id="loading"></div>
+    <section class="homepage-head"></section>
+    <section class="listing">
+        <div class="nav-row">
+            <a class="back" href="./home.html"><i class="fas fa-backward"></i>Back</a>
+            <div class="layout">
+                <a id="gridBtn"><i class="fas fa-th-large"></i></a>
+                <a id="mapBtn"><i class="fas fa-map"></i></a>
+            </div>
+        </div>
+        <div class="container">
+            <div class="features-listings listing-by-category">
+            </div>
+            <div id="map"></div>
+        </div>
+    </section>
+    <footer id="footer"> </footer>
+    <script src="main.bundle.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDIVpxvL6NGqlEteMvl8snz1p1EbqltlGw&callback=initMap&libraries=&v=weekly"
+        async></script>
+</body>
+
+</html>

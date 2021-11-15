@@ -1,0 +1,165 @@
+.listing-detail-page {
+    padding-top: 100px;
+}
+
+.listing-img-container h1{
+    margin-bottom: 20px;
+}
+
+
+.listing-main-img img {
+    width: 100%;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+.other-listing-img {
+    display: grid;
+    gap: 10px;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+
+.container-auto .row{
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 0;
+}
+
+.container-auto .row a{
+    color: var(--white);
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 12px;
+    background-color: var(--primary-color);
+}
+
+.container-auto .row a i {
+    margin-right: 10px;
+    line-height: 1.2;
+}
+
+.other-listing-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.container-auto {
+    width: 50%;
+    margin: auto;
+    text-align: justify;
+}
+
+.listing-description {
+    margin-top: 30px;
+}
+
+.listing-description h2 {
+    text-align: left;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.listing-map{
+    padding: 100px;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+.listing-pricing button {
+    margin-top: 20px;
+}
+
+.agent-cont{
+  margin-top: 40px;
+}
+
+.agent-cont .agent-info {
+    background-color: var(--tertiary-color);
+    display: flex;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.agent-cont .agent-info img{
+    height: 70px;
+    width: 70px;
+    border-radius: 50px;
+}
+
+.agent-card-info {
+    width: 100%;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.listing-pricing {
+    background-color: var(--tertiary-color);
+    margin-top: 40px;
+    text-align: center;
+    padding: 20px;
+    border-radius: 20px;
+}
+
+.listing-pricing button {
+    width: 200px;
+}
+
+.agent-info strong {
+    padding: 0px 20px;
+}
+
+
+.agent-info a {
+    width: auto;
+    margin: 1% 5%;
+    flex-grow: 1;
+    display: inline-block;
+    padding: 15px;
+    color: var(--white);
+    text-align: center;
+    background: var(--primary-color);
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 30px;
+    justify-content: space-between;
+}
+
+.agent-detail-cont{
+    width: 100%;
+}
+
+.listing-description .single-listing-map {
+    height: 20vh !important;
+    border-radius: 10px;
+}
+
+
+.back{
+    color: var(--white);
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 12px;
+    background-color: var(--primary-color);
+    margin: 4px 5px;
+}
+
+.back i {
+    margin-right: 10px;
+    line-height: 1.2;
+}
+
+.back:active {
+    transform: scale(1);
+}
+
+@media screen and (max-width: 700px) {
+    .container-auto {
+        width: 80%;
+    }
+}

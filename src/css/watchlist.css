@@ -1,0 +1,15 @@
+.watchlist-listings{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(225px, 1fr));
+    gap: 24px 16px;
+    grid-template-rows: auto;
+    margin: 15px;
+}
+
+.flex-grow-2{
+    flex-grow: 2;
+}
+
+.flex-grow-1{
+    flex-grow: 1;
+}

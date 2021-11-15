@@ -1,8 +1,8 @@
 {
  "name": "Temporas",
  "short_name": "Temporas",
- "theme_color": "#222831",
- "background_color": "#ffad17",
+ "theme_color": "rgb(25,24,36)",
+ "background_color": "#FFF",
  "display": "standalone",
  "Scope": "",
  "start_url": "/index.html",

@@ -34,11 +34,6 @@ jobs:
       - name: Build
         run: |
           yarn build
-        # env:
-        #   FIREBASE_KEY_GITSTART: "${{ secrets.FIREBASE_KEY_GITSTART }}"
-        #   STRIPE_PK_TEST: "${{ secrets.STRIPE_PK_TEST }}"
-        #   GCLOUD_PROJECT: "${{ secrets.FIREBASE_PROJECT_ID }}"
-
       - name: Inject slug/short variables
         uses: rlespinasse/github-slug-action@v3.x
 
