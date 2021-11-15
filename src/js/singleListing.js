@@ -33,9 +33,6 @@ if (isPath) {
       }
     })
 
-    const res = await getSingleProduct(window.location.search.
-      slice(1, window.location.search.length))
-
     const itemName = document.querySelector('.title')
     const listingImg = document.querySelector('.listing-main-img > img')
     const description = document.querySelector('.listing-description > div')
@@ -46,20 +43,19 @@ if (isPath) {
     const message = document.querySelector('.agent-card-info .message')
     const listingImgCont = document.querySelector('.other-listing-img')
 
+    const {res} = product
+
     listingImgCont.innerHTML = ''
-    itemName.innerHTML = res.itemName
-    listingImg.src = res.imgUrls[0]
+    itemName.innerHTML = res.title
+    listingImg.src = res.photos[0]
     description.innerHTML = res.description
-    agentName.innerHTML = res.userFirstName
-    userPhoto.src = res.userPhoto
-    cost.innerHTML = `$${res.price} / day`
+    agentName.innerHTML = res.itemOwner
+    userPhoto.src = res.profileImg
+    cost.innerHTML = `${res.currency}${res.price} / day`
 
-    for (let url = 1; url < res.imgUrls.length; url++) {
-      console.log(
-        {imgUrls: res.imgUrls[url]})
-
+    for (let url = 1; url < res.photos.length; url++) {
       listingImgCont.innerHTML +=
-      `<img src="${res.imgUrls[url]}" alt="listing main image"/>`
+      `<img src="${res.photos[url]}" alt="listing main image"/>`
     }
 
     call.href = `tel://${res.phone}`
@@ -74,13 +70,18 @@ if (isPath) {
   }
 
   if (listingEle) {
-    setTimeout(() => {
+    setTimeout(async () => {
       window.startLoader()
+
+      const res = await getSingleProduct(window.location.search.
+        slice(1, window.location.search.length))
+
       initMap({
-        currency: 'CAD',
+        currency: '$',
         weeklyPrice: '2142',
-        lat: 45.347412,
-        lng: -75.92921,
+        lat: res.latitude,
+        lng: res.longitude,
+        res,
       })
     }, 2000)
   }

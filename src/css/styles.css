@@ -74,7 +74,7 @@ form {
 	text-align: center;
 }
 
-input {
+input, textarea, select {
 	background-color: var(--gray);
 	border-radius: 5px;
 	border: none;
@@ -83,6 +83,9 @@ input {
 	width: 100%;
 }
 
+textarea {
+  height: 200px;
+}
 footer {
   background-color: var(--secondary-color);
   color: var(--white);

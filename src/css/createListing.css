@@ -1,0 +1,55 @@
+.create-listing-container {
+    padding-top: 100px;
+    padding-bottom: 30px;
+}
+
+.create-listing-container form {
+    width: 90%;
+    margin: auto;
+    padding: 0;
+}
+
+.create-listing-container form  .form-item{
+    width: 100%;
+    text-align: left;
+    margin-bottom: 10px;
+}
+
+.create-listing-container form .row{
+    width: 100%;
+}
+
+
+.create-listing-container form .row input{
+    width: 90%;
+}
+
+.img-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+.img-container img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.img-container {
+    margin-bottom: 50px;
+}
+
+
+@media screen and (min-width: 700px) {
+    .create-listing-container form {
+        width: 60%;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .create-listing-container form {
+        width: 40%;
+    }
+}

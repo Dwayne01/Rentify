@@ -4,11 +4,13 @@ import './css/index.css'
 import './css/home.css'
 import './css/watchlist.css'
 import './css/singleListing.css'
+import './css/createListing.css'
 import './pages/home.html'
 import './pages/watchlist.html'
 import './pages/updateProfile.html'
 import './pages/singleListing.html'
 import './pages/listing.html'
+import './pages/createListing.html'
 import './js/contact'
 import './js/auth'
 import './js/updateProfile'
@@ -16,6 +18,7 @@ import './js/home'
 import './js/watchlist'
 import './js/singleListing'
 import './js/listing'
+import './js/createListing.js'
 
 import {initializeApp} from 'firebase/app'
 import {getAuth, onAuthStateChanged} from 'firebase/auth'
@@ -92,33 +95,35 @@ if (header) {
                     </span>
                 </li>
                 <li>
+                <a href="/createListing.html">
+                  <div class="menu-icon">
+                      <i class="fas fa-plus-square"></i>
+                  </div>
+                  <span class="menu-title">
+                      <a href="">Create Listing</a>
+                  </span>
+                </a>
+            </li>
+            <li>
+                <a href="/watchlist.html">
                     <div class="menu-icon">
-                        <i class="fas fa-plus-square"></i>
+                        <i class="fas fa-star"></i>
                     </div>
                     <span class="menu-title">
-                        <a href="">Create Listing</a>
+                    Watchlist
                     </span>
-                </li>
-                <a href="/watchlist.html">
-                    <li>
-                        <div class="menu-icon">
-                            <i class="fas fa-star"></i>
-                        </div>
-                        <span class="menu-title">
-                        Watchlist
-                        </span>
-                    </li>
                 </a>
+            </li>
+            <li>
                 <a id="logout" href="">
-                    <li>
-                        <div class="menu-icon">
-                            <i class="fas fa-sign-out-alt"></i>
-                        </div>
-                        <span class="menu-title">
-                            Logout
-                        </span>
-                    </li>
+                    <div class="menu-icon">
+                        <i class="fas fa-sign-out-alt"></i>
+                    </div>
+                    <span class="menu-title">
+                        Logout
+                    </span>
                 </a>
+            </li>
             </ul>
         </div>
     </div>
@@ -153,33 +158,35 @@ if (noSearchHeader) {
                 </span>
             </li>
             <li>
-                <div class="menu-icon">
-                    <i class="fas fa-plus-square"></i>
-                </div>
-                <span class="menu-title">
-                    <a href="">Create Listing</a>
-                </span>
+                <a href="/createListing.html">
+                  <div class="menu-icon">
+                      <i class="fas fa-plus-square"></i>
+                  </div>
+                  <span class="menu-title">
+                      <a href="">Create Listing</a>
+                  </span>
+                </a>
             </li>
-            <a href="/watchlist.html">
-                <li>
+            <li>
+                <a href="/watchlist.html">
                     <div class="menu-icon">
                         <i class="fas fa-star"></i>
                     </div>
                     <span class="menu-title">
                     Watchlist
                     </span>
-                </li>
-            </a>
-            <a id="logout" href="">
-                <li>
+                </a>
+            </li>
+            <li>
+                <a id="logout" href="">
                     <div class="menu-icon">
                         <i class="fas fa-sign-out-alt"></i>
                     </div>
                     <span class="menu-title">
                         Logout
                     </span>
-                </li>
-            </a>
+                </a>
+            </li>
         </ul>
     </div>
 </div>
@@ -239,7 +246,7 @@ window.onload = function () {
   const localState = localStorage.getItem('state')
 
   if (localState) {
-    state = JSON.parse(localStorage.getItem('state'))
+    state = JSON.parse(localState)
   }
 
   onAuthStateChanged(auth, async (user) => {

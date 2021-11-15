@@ -49,43 +49,42 @@ module.exports = {
     }),
   ],
   module: {
-    rules: [
-      {
-        test: /\.(woff(2)?|ttf|eot)(\?v=\d+\.\d+\.\d+)?$/,
-        type: 'asset/resource',
-      },
-      {
-        test: /\.js(x)?$/,
-        use: [
-          {
-            loader: 'babel-loader',
-            options: {
-              presets: ['@babel/preset-env'],
-            },
+    rules: [{
+      test: /\.css$/i,
+      use: ['style-loader', 'css-loader'],
+    },
+    {
+      test: /\.(woff(2)?|ttf|eot)(\?v=\d+\.\d+\.\d+)?$/,
+      type: 'asset/resource',
+    },
+    {
+      test: /\.js(x)?$/,
+      use: [
+        {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env'],
           },
-        ],
-        exclude: /node_modules/,
-      },
-      {
-        test: /\.html$/,
-        use: [
-          {
-            loader: 'file-loader',
-            options: {
-              name: '[name].[ext]',
-            },
+        },
+      ],
+      exclude: /node_modules/,
+    },
+    {
+      test: /\.html$/,
+      use: [
+        {
+          loader: 'file-loader',
+          options: {
+            name: '[name].[ext]',
           },
-        ],
-        exclude: path.resolve(__dirname, './index.html'),
-      },
-      {
-        test: /\.css$/i,
-        use: ['style-loader', 'css-loader'],
-      },
-      {
-        test: /\.('gif|png|jpg|jpeg|svg)$/i,
-        type: 'asset/resource',
-      },
+        },
+      ],
+      exclude: path.resolve(__dirname, './index.html'),
+    },
+    {
+      test: /\.('gif|png|jpg|jpeg|svg)$/i,
+      type: 'asset/resource',
+    },
     ],
   },
 }

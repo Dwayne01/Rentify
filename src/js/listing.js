@@ -1,8 +1,12 @@
-import {getProductListByCategory} from './products'
+import {addToWatchlist, getProductListByCategory} from './products'
 
 const isPath = window.location.pathname === '/listing.html'
 
 if (isPath) {
+  let state = {products: []}
+
+  state = {...state, ...JSON.parse(localStorage.getItem('state'))}
+
   setTimeout(async () => {
     const cardCont = document.querySelector('.features-listings')
     cardCont.innerHTML = ''
@@ -11,6 +15,8 @@ if (isPath) {
       .slice(1, window.location.pathname.length)
     window.startLoader()
     const products = await getProductListByCategory(category)
+
+    state.products = products.map((prod) => prod.data())
 
     if (products.length === 0) {
       window.stopLoader()
@@ -24,23 +30,23 @@ if (isPath) {
             <div class="card-container">
                 <div class="card-img-container">
                       <a href="./singleListing.html?${product.id}">
-                        <img src=${prodData.imgUrls[0]} 
+                        <img src=${prodData.photos[0]} 
                           alt="product image" />
                       </a>
                       <div class="favorite-cont">
-                        <a class="favorite">
+                        <a class="favorite-btn">
                           <i class="fas fa-star"></i>
                         </a>
                       </div>
                 </div>
                 <div class="container__profile">
                     <div class="container__profile__text">
-                        <h3>${prodData.itemName}</h3>
+                        <h3>${prodData.title}</h3>
                         <p>
-                            <b>${prodData.userFirstName}</b>
+                            <b>${prodData.itemOwner}</b>
                         </p>
                         <div class="card-bottom">
-                            <p>C$${prodData.weeklyPrice}/day</p>
+                            <p>C$${prodData.price}/day</p>
                             <p>${prodData.city}</p>
                         </div>
                     </div>
@@ -52,6 +58,32 @@ if (isPath) {
     initMap(products)
 
     window.stopLoader()
+
+    const favoritesBtn = document.querySelectorAll('.favorite-btn i')
+
+    favoritesBtn.forEach((ele, index) => {
+      ele.addEventListener('click', async (e) => {
+        e.preventDefault()
+        const listing = state.products[index]
+
+        const {title, price, city, itemImage, itemOwner} = listing
+
+        const params = {
+          userId: state.user,
+          title,
+          price,
+          city,
+          imgUrl: itemImage,
+          itemOwner,
+        }
+
+        // console.log(params)
+
+        window.startLoader()
+        await addToWatchlist(params)
+        window.stopLoader()
+      })
+    })
   })
 
   const gridEleBtn = document.getElementById('gridBtn')
@@ -80,8 +112,8 @@ function initMap (products) {
   // The location of Uluru
   const locations = products.map((product, index) => {
     const prod = product.data()
-    return ([`${prod.currency} ${prod.weeklyPrice}`,
-      prod.lat, prod.lng, index + 1])
+    return ([`${prod.currency} ${prod.price}`,
+      prod.latitude, prod.longitude, index + 1])
   })
 
   const map = new google.maps.Map(mapEle, {

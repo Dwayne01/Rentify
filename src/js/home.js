@@ -1,9 +1,9 @@
-import {addToWatchlist, getProductList} from './products'
+import {getProductList} from './products'
 
-const isPath = window.location.href.split('/').includes('home.html')
+const isPath = window.location.pathname === '/home.html'
 
 if (isPath) {
-  let state = {
+  const state = {
     products: [],
     isPressed: {},
   }
@@ -13,6 +13,11 @@ if (isPath) {
     const products = await getProductList()
     const cardCont = document.querySelector('.features-listings')
     cardCont.innerHTML = ''
+
+    if (!products) {
+      window.stopLoader()
+      return
+    }
 
     const productData = products.map((product) => {
       return product.data()
@@ -48,28 +53,23 @@ if (isPath) {
       for (const product of sortedData[data]) {
         const productData = product.data()
 
-        console.log({productData})
         newDiv.innerHTML += (`
             <div class="card-container">
                 <div class="card-img-container">
                       <a href="./singleListing.html?${product.id}">
-                        <img src=${productData.imgUrls[0]}
+                        <img src=${productData.photos[0]}
                           alt="product image" />
-                      </a>
-                      <div class="favorite-cont">
-                        <a class="favorite">
-                          <i class="fas fa-star"></i>
-                        </a>
-                      </div>
+                      </a>                     
                 </div>
                 <div class="container__profile">
                     <div class="container__profile__text">
-                        <h3>${productData.itemName}</h3>
+                        <h3>${productData.title}</h3>
                         <p>
-                            <b>${productData.userFirstName}</b>
+                            <b>${productData.itemOwner}</b>
                         </p>
                         <div class="card-bottom">
-                            <p>C$${productData.weeklyPrice}/day</p>
+                            <p>${productData.currency} 
+                            ${productData.price}/day</p>
                             <p>${productData.city}</p>
                         </div>
                     </div>
@@ -82,39 +82,4 @@ if (isPath) {
 
     window.stopLoader()
   }, 2000)
-
-  setTimeout(() => {
-    const isPath = window.location.href.split('/').includes('home.html')
-
-    const localState = JSON.parse(localStorage.getItem('state'))
-
-    if (localState) {
-      state = {...localState, ...state}
-    }
-
-    if (!isPath) return
-    const favoritesBtn = document.querySelectorAll('.favorite i')
-    favoritesBtn.forEach((ele, index) => {
-      ele.addEventListener('click', async () => {
-        const listing = state.products[index]
-        const {itemUrl, itemName, weeklyPrice, city, imgUrls} = listing
-
-        const params = {
-          itemUrl,
-          userId: state.user,
-          itemName,
-          weeklyPrice,
-          city,
-          imgUrl: imgUrls[0],
-        }
-
-        state.isPressed[itemName] = state.isPressed[itemName] ? false : true
-
-        ele.style.color = !state.isPressed[itemName] ? 'white' : 'yellow'
-        window.startLoader()
-        await addToWatchlist(params)
-        window.stopLoader()
-      })
-    })
-  }, 4000)
 }

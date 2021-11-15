@@ -30,8 +30,9 @@ export async function addToWatchlist (params) {
   try {
     const db = getFirestore()
 
-    const product = await getWatchlistProduct(params.itemName, params.userId)
+    const product = await getWatchlistProduct(params.title, params.userId)
 
+    console.log({product}, {params})
     if (product.length === 0) {
       await addDoc(collection(db, 'watchlist'), params)
     } else {
@@ -98,7 +99,7 @@ export async function getWatchlistProduct (productName, userId) {
     const db = getFirestore()
     const watchlistCollection = collection(db, 'watchlist')
     const q = query(watchlistCollection,
-      where('itemName', '==', productName),
+      where('title', '==', productName),
       where('userId', '==', userId))
 
     const watchListSnapshot = await (await getDocs(q)).docs
