@@ -83,15 +83,16 @@ logintbtn && logintbtn.addEventListener('submit', (e) => {
     })
 })
 
-const signupbtn = document.querySelector('#form-signup')
+const signupbtn = document.
+  querySelector('.registration-form > input[type="submit"')
 
-signupbtn && signupbtn.addEventListener('submit', (e) => {
+signupbtn && signupbtn.addEventListener('click', (e) => {
   e.preventDefault()
 
   window.startLoader()
   const errorElement = document.getElementById('errorMsg')
-  const email = document.querySelector('#form-signup #email').value
-  const password = document.querySelector('#form-signup #password').value
+  const email = document.querySelector('.registration-form #email').value
+  const password = document.querySelector('.registration-form  #password').value
   errorElement.innerText = ''
 
   if (!email || !password) {
@@ -110,11 +111,6 @@ signupbtn && signupbtn.addEventListener('submit', (e) => {
       const user = userCredential.user
       state.user = user.uid
       state.email = user.email
-      window.location.href = '/updateProfile.html'
-      state.isLoggedIn = true
-      const userInfo = await getUserProfile(user.uid)
-      state.userProfile = userInfo
-      localStorage.setItem('state', JSON.stringify(state))
       window.stopLoader()
     })
     .catch((error) => {

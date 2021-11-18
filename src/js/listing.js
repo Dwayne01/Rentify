@@ -25,7 +25,7 @@ if (isPath) {
 
     for (const product of products) {
       const prodData = product.data()
-      console.log(product.id)
+
       cardCont.innerHTML += (`
             <div class="card-container">
                 <div class="card-img-container">
@@ -76,11 +76,14 @@ if (isPath) {
           imgUrl: itemImage,
           itemOwner,
         }
-
-        // console.log(params)
-
         window.startLoader()
-        await addToWatchlist(params)
+        try {
+          await addToWatchlist(params)
+          const favorite = document.querySelector('.favorite-cont i')
+          favorite.style.color = 'rgb(247,187,13)'
+        } catch (error) {
+          console.log(error)
+        }
         window.stopLoader()
       })
     })

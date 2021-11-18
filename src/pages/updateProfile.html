@@ -10,28 +10,19 @@
     <body>
         <div id="loading"></div>
 
-        <div class="form-container">
+        <div class="updateProfile form-container">
             <form id="form-profile">
                 <input type="text" id="first_name" placeholder="First Name"/>
                 <input type="text" id="last_name" placeholder="Last Name"/>
                 <input type="text" id="address" placeholder="Address"/>
                 <input type="date" id="dob" placeholder="Date Of Birth"/>
-                <input type="tel" id="phone" name="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="Contact number">
+                <input type="tel" id="phone" name="phone" placeholder="Contact number">
                 <input type="file" id="image" accept="image/*" />
                 <input type="submit" value="Done">
             </form>
         </div>
 
-        <footer>
-            <p>
-                Created with
-                <i class="fa fa-heart"></i>
-                by
-                <a target="_blank" href="https://florin-pop.com">Florin Pop</a>
-                - Read how I created this and how you can join the challenge
-                <a target="_blank" href="https://www.florin-pop.com/blog/2019/03/double-slider-sign-in-up-form/">here</a>.
-            </p>
-        </footer>
+        <footer id="footer"></footer>
         <script src="serviceworker.js"></script>
 
         <script src="main.bundle.js"></script>

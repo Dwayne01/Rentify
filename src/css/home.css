@@ -39,6 +39,10 @@
     width: 100%;
 }
 
+.menu #menu-list li > a{
+    width: 100%;
+}
+
 .menu #menu-list li, a {
     display: flex;
     margin: 0;
@@ -73,6 +77,7 @@
 .menu-title{
     line-height: 1.7;
     padding-left: 20px;
+    width: 100%;
 }
 
 
@@ -87,6 +92,25 @@
 
 .profile-section {
     text-align: right;
+    display: flex;
+}
+
+.profile-section > a {
+    border: 1px solid var(--white);
+    border-radius: 10px;
+    font-size: 18px;
+    padding: 10px;
+    margin: auto;
+    margin-right: 20px;
+}
+
+.profile-section > a:active {
+    transform: scale(1.1);
+}
+
+.profile-section > a > i {
+    margin-right: 10px;
+    line-height: 1.2;
 }
 
 .logo img{
@@ -126,11 +150,7 @@
     width: 700px;
 }
 
-.search-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;;
-}
+
 
 .custom-search-cont{
     display: flex;
@@ -178,7 +198,7 @@
 
 #map {
     width: 100%;
-    height: 84vh;
+    height: 90vh;
 }
 
 .listing-details #map {
@@ -186,13 +206,9 @@
 }
 
 .listing-details{
-    height: 90vh;
-    padding-top: 75px;
-    height: 93vh;
-    padding-top: 75px;
-    overflow: hidden;
-    overflow: scroll;
-
+    display: none;
+    padding-top: 80px;
+    background: var(--tertiary-color);
 }
 
 .features-listings{
@@ -221,8 +237,9 @@
 CARDS
 */
 .card-container {
- margin-bottom: 20px;
- border-radius: 10px;
+ border-radius: 20px;
+ padding: 20px;
+ background-color: var(--white);
  }
  
  .card-img-container a {
@@ -233,8 +250,8 @@ CARDS
 
 .card-img-container img{
 width: 100%;
-height: 100%;
-border-radius: 10px 10px 0px 0px;
+height: 20em;
+border-radius: 20px;
 object-fit: cover;
 }
 
@@ -249,6 +266,13 @@ object-fit: cover;
     color: var(--gray);
     font-size: 1.7rem;
     cursor: pointer;
+    background: #60606061;
+    width: 60px;
+    border-radius: 10px;
+    margin: auto;
+    font-size: 24px;
+    text-align: center;
+    padding: 6px;
 }
 
 .wishlist .favorite-cont i {
@@ -259,21 +283,15 @@ object-fit: cover;
 
 
 .card-img-container{
-    height: 150px;
     width: 250px;
     position: relative;
 }
-  .card-container  i {
-   margin-right: 10px;
-  }
   
  .container__profile {
-  background-color: var(--black);
   display: flex;
   align-items: center;
-  padding: 20px;
+  padding-top: 10px;
   width: 250px;
-  border-radius: 0px 0px 10px 10px;
 }
 
   .container__profile img {
@@ -286,12 +304,12 @@ object-fit: cover;
    }
    
    .container__profile__text  p{
-    color: var(--white);
+    color: var(--dark-gray);
    }
 
    .container__profile h3 {
-    color: var(--white);
-    font-size: 0.8rem;
+    color: var(--dark);
+    font-size: 1rem;
     height: 30px;
     overflow: hidden;
     display: -webkit-box;
@@ -309,6 +327,7 @@ object-fit: cover;
    .card-bottom {
         display: flex;
         justify-content: space-between;
+        margin-top: 10px;
    }
 
    .layout {
@@ -331,7 +350,7 @@ object-fit: cover;
    .features-listings .category {
         margin: 40px 0px;
         text-transform: capitalize;
-        font-size: 1.5em;
+        font-size: 1.3em;
     }
 
     .catgeory-cont p {
@@ -352,45 +371,51 @@ object-fit: cover;
    }
 
    .categories-cont {
-       display: grid;
+       display: flex;
        padding: 20px;
-       grid-template-columns: repeat(auto-fill, minmax(225px, 1fr));
+       overflow-y: hidden;
+       gap: 20px;
    }
 
    .categoryCard img {
         width: 100px;
         height: 100px;
         object-fit: cover;
+        display: block;
+        margin: auto;
+        border: 4px solid var(--primary-color);
         border-radius: 30px;
    }
 
    .categoryCard {
        text-align: center;
-       padding: 15px;
        font-weight: 600;
-       display: flex;
+       display: block;
        align-items: center;
    }
 
-   .categoryCard p {
-        margin: 0px 20px;
+   .categories-cont .categoryCard p {
+        margin-top: 10px !important;
         color: var(--secondary-color);
-        text-align: left;
+        text-align: center;
+        margin: auto;
    }
 
    .category-heading {
        margin-left: 15px;
+       font-size: 1.3em;
+       margin-top: 20px;
    }
 
    .listing-by-category {
        display: grid;
-       gap: 10px;
+       gap: 15px;
        grid-template-columns: repeat(auto-fill, minmax(225px, 1fr));
+       grid-template-rows: repeat(auto-fill, 411px);
    }
 
    .listing-by-category .card-img-container {
        width: 100%;
-       height: 11rem;
    }
 
    .listing-by-category .container__profile {
@@ -411,11 +436,88 @@ object-fit: cover;
        display: none;
    }
 
+   .search-background {
+       background-image: url('../images/bicycle.jpg');
+       height: 40vh;
+       background-position: center; 
+       background-repeat: no-repeat;
+       background-size: cover;
+       transform: translateY(20px);
+       position: relative;
+   }
+
+   .slogan {
+       position: absolute;
+    transform: translateY(70%);
+    width: 100%;
+    text-align: center;
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    padding: 20px;
+   }
+
+   .search-background .search-container {
+        position: absolute;
+        bottom: 0px;
+        width: 100%;
+        height: 75px;
+        display: flex;
+        justify-content: center;
+        transform: translateY(40px);
+    }
+    
+    .search-background .search-container i {
+        background-color: var(--primary-color);
+        padding: 20px;
+        margin: 8px;
+        color: var(--white);
+        line-height: 1.5;
+        cursor: pointer;
+    }
+    
+    .custom-search {
+       box-shadow: 2px 2px 10px var(--box-shadow);
+       background: var(--white);
+       width: 80%;
+       display: flex;
+    }
+
+    .custom-search input {
+        margin: 8px 0px 8px 8px ;
+        border-radius: 0;
+    }
+
+   #form-profile {
+        width: 70%;
+        padding: 0px;
+        margin: auto;
+   }
+
+   .updateProfile {
+	    height: 100%!important;
+    }
+
+    .updateProfile input[type="submit"] {
+        margin: 30px 0px;
+    }
+
+
    @media screen and (min-width: 700px) {
         .layout {
             display: none;
         }
         
+
+        .custom-search {
+            width: 70%;
+        }
+
+        #form-profile {
+            width: 50%;
+        }
+
+        
+
         .container .listing .features-listings {
             display: grid;
             width: 50%;
@@ -432,6 +534,21 @@ object-fit: cover;
         .listing .container #map {
             display: block!important;
             width: 50%;
-            height: 84vh;
+            height: 90vh;
         }
+   }
+
+   @media screen and (min-width: 1024px) {
+       .categories-cont {
+        justify-content: space-around;
+       }
+
+
+       .slogan {
+            font-size: 2rem; 
+       }
+
+       .custom-search {
+        width: 50%;
+    }
    }
