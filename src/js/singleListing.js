@@ -86,3 +86,65 @@ if (isPath) {
     }, 2000)
   }
 }
+
+// Get the modal
+const modal = document.getElementById('quoteModal')
+
+// Get the button that opens the modal
+const btn = document.getElementById('openQuote')
+
+// Get the button that opens the modal
+const mdlbtn = document.getElementById('quoteModalbtn')
+
+// Get the <span> element that closes the modal
+const span = document.getElementsByClassName('close')[0]
+
+// When the user clicks on the button, open the modal
+btn.onclick = function () {
+  modal.style.display = 'block'
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function () {
+  modal.style.display = 'none'
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function (event) {
+  if (event.target == modal) {
+    modal.style.display = 'none'
+  }
+}
+
+// Function to manage the Date input
+function parseDate (str) {
+  const datat = str.split('-')
+  return (datat[1] + '/' + datat[2] + '/' + datat[0])
+}
+
+// Function to find days between two dates
+function datediff (date1, date2) {
+  const dt1 = new Date(date1)
+  const dt2 = new Date(date2)
+  return Math.floor((Date.UTC(dt2.getFullYear(), dt2.getMonth(),
+    dt2.getDate()) -
+                      Date.UTC(dt1.getFullYear(), dt1.getMonth(),
+                        dt1.getDate()) ) / (1000 * 60 * 60 * 24))
+}
+
+mdlbtn.onclick = function () {
+  const amount = 50 // TODO: Get amount of the product
+  const inputDays = daysInput.value
+  const inputStartDate = dateStart.value
+  const inputEndDate = dateEnd.value
+  const daysDifference =
+          datediff(parseDate(inputStartDate), parseDate(inputEndDate))
+  let calculatedOutput = 0
+  if (inputDays) {
+    calculatedOutputcalculatedOutput = inputDays * amount
+  } else {
+    calculatedOutput = daysDifference * amount
+  }
+  alert('Your amount is: $' + calculatedOutput)
+}
+
