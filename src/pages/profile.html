@@ -6,36 +6,28 @@
         <meta name="description" content="">
         <meta name="theme-color" content="rgb(25,24,36)">
         <link rel="manifest" href="manifest.json">
-        <link
-        rel="stylesheet"
-        href="https://assets.ubuntu.com/v1/vanilla-framework-version-2.37.0.min.css"
-      />
     </head>
     <body>
         <div id="loading"></div>
-
-        <div class="form-container">
+        <div class="row">
+            <a class="back" href="./home.html"><i class="fas fa-backward"></i>Back</a>
+        </div>  
+        <div class="updateProfile form-container">
             <form id="form-profile">
+                <label for="image">
+                    <img src="../images/profile.png" width="100px"/>
+                </label>
+                <input type="file" id="image" accept="image/*" />
                 <input type="text" id="first_name" placeholder="First Name"/>
                 <input type="text" id="last_name" placeholder="Last Name"/>
                 <input type="text" id="address" placeholder="Address"/>
                 <input type="date" id="dob" placeholder="Date Of Birth"/>
-                <input type="text" id="phone" placeholder="Phone"/>
-                <input type="file" id="image" accept="image/*" />
+                <input type="tel" id="phone" name="phone" placeholder="Contact number">
                 <input type="submit" value="Done">
             </form>
         </div>
 
-        <footer>
-            <p>
-                Created with
-                <i class="fa fa-heart"></i>
-                by
-                <a target="_blank" href="https://florin-pop.com">Florin Pop</a>
-                - Read how I created this and how you can join the challenge
-                <a target="_blank" href="https://www.florin-pop.com/blog/2019/03/double-slider-sign-in-up-form/">here</a>.
-            </p>
-        </footer>
+        <footer id="footer"></footer>
         <script src="serviceworker.js"></script>
 
         <script src="main.bundle.js"></script>

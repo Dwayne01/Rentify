@@ -497,6 +497,10 @@ object-fit: cover;
 	    height: 100%!important;
     }
 
+    .updateProfile #image {
+        display: none;
+    }
+
     .updateProfile input[type="submit"] {
         margin: 30px 0px;
     }
@@ -537,6 +541,8 @@ object-fit: cover;
             height: 90vh;
         }
    }
+
+
 
    @media screen and (min-width: 1024px) {
        .categories-cont {
