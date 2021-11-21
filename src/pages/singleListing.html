@@ -30,8 +30,29 @@
                     <div>
                         <strong></strong>
                     </div>
-                    <button class="button">Get a Quote</button>
+                    <button class="button getQuote" id="openQuote">Get a Quote</button>
                 </div>
+                <!-- Get Quote Modal -->
+                <div id="quoteModal" class="modal">
+
+                    <!-- Modal content -->
+                    <div class="modal-content" style="text-align: left;">
+                        <span class="close">&times;</span>
+                        <!-- <p>Some text in the Modal..</p> -->
+                        <label for="daysInput-label">Number of days: </label>
+                        <input type="number" name="daysInput" id="daysInput" placeholder="5">
+                        <hr>  <h2 style="text-align: center;"> OR </h2>   <hr>
+
+                        <label for="dateStart-label">Select Start date: </label>
+                        <input type="date" id="dateStart" name="dateStart">
+                        <h4 style="text-align: center;"> To </h4>
+                        <label for="EndStart-label">Select End date: </label>
+                        <input type="date" id="dateEnd" name="dateEnd">
+                        <button name="quoteModalbtn" class="quoteModalbtn" id="quoteModalbtn" >Submit</button>
+                    </div>
+                
+                </div>
+
                 <div class="listing-description">
                     <h2>Description</h2>
                     <div>
