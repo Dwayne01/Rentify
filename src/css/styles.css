@@ -1,98 +1,48 @@
-:root {
-  --primary-color: rgb(247,187,13);
-  --secondary-color: rgb(25,24,36);
-  --tertiary-color: rgb(249, 248, 254);
-  --dark-text: #333;
-  --red: red;
-  --gray: #eee;
-  --white: white;
-  --black: rgb(25,24,36);
-  --dark-gray: #a1b2bc
-}
-
-
 *{
-    padding: 0;
-    margin: 0;
+  padding: 0;
+  margin: 0;
 }
 
-a {
-  text-decoration: none;
-  color: var(--primary-color);
+
+
+/* Style the navigation menu */
+.topnav {
+  overflow: hidden;
+  background-color: #333;
+  position: relative;
 }
-#loading {
+
+/* Hide the links inside the navigation menu (except for logo/home) */
+.topnav #myLinks {
   display: none;
+}
+
+/* Style navigation menu links */
+.topnav a {
+  color: white;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+  display: block;
+}
+
+/* Style the hamburger menu */
+.topnav a.icon {
+  background: black;
+  display: block;
   position: absolute;
+  right: 0;
   top: 0;
-  left: 0;
-  z-index: 101;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(192, 192, 192, 0.5);
-  background-image: url("../images/spinner.gif");
-  background-repeat: no-repeat;
-  background-position: center;
 }
 
-
-button, .button, input[type='submit'] {
-	border-radius: 20px;
-	border: 1px solid var(--secondary-color);
-	background-color: var(--primary-color);
-	color: var(--secondary-color);
-	font-size: 10px;
-	font-weight: bold;
-	text-align: center;
-	padding: 12px 10px;
-	letter-spacing: 1px;
-	text-transform: uppercase;
-	transition: transform 80ms ease-in;
-  width: 150px;
+/* Add a grey background color on mouse-over */
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
 }
 
-button, .button, input[type='submit']:active {
-	transform: scale(0.95);
+/* Style the active link (or home/logo) */
+.active {
+  background-color: #04AA6D;
+  color: white;
 }
-
-.button:active {
-	transform: scale(1);
-}
-
-
-button, .button, input[type='submit']:focus {
-	outline: none;
-}
-
-form {
-	background-color: var(--white);
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	flex-direction: column;
-	padding: 0 50px;
-	height: 100%;
-	text-align: center;
-}
-
-input, textarea, select {
-	background-color: var(--gray);
-	border-radius: 5px;
-	border: none;
-	padding: 12px 15px;
-	margin: 8px 0;
-	width: 100%;
-}
-
-textarea {
-  height: 200px;
-}
-footer {
-  background-color: var(--secondary-color);
-  color: var(--white);
-  text-align: center;
-  display: flex;
-  align-items: center;
-  height: 7%;
-  justify-content: center;
-}
-
