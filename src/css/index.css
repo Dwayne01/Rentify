@@ -85,3 +85,7 @@ body {
 	color:var(--red);
 	align-self: start;
 }
+
+#create-account-title {
+	display: none;
+}
