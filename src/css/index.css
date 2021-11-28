@@ -14,18 +14,26 @@ body {
 
 #forgotPassword{
 	width: 100%;
-	margin-bottom: 50px;
+	margin-bottom: 20px;
 	color: var(--dark-text);
 	text-decoration: none;
 }
 
 .container {
-	background: var(--white);
+	background: var(--tertiary-color);
 	font-family: 'Montserrat', sans-serif;
 	min-height: 90vh;
 }
 
 
+.user-name {
+	width: 90%;
+}
+
+.menu-email {
+	overflow: hidden;
+    text-overflow: ellipsis;
+}
 
 
 .social-container {
@@ -86,6 +94,21 @@ body {
 	align-self: start;
 }
 
-#create-account-title {
-	display: none;
+@media screen and (min-width: 700px) {
+	.overlay-container{
+		order: 2;
+	}
+
+	.form-container{
+		order: 1;
+		margin: auto;
+	}
+
+	.login {
+		display: flex;
+	}
+
+	.overlay{
+		transform: translateY(15rem);
+	}
 }

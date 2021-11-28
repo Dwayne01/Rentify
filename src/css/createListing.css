@@ -41,6 +41,16 @@
     margin-bottom: 50px;
 }
 
+.create-listing-container .row {
+    text-align: left ;
+    margin: 0;
+    margin-bottom: 20px;
+}
+
+.create-listing-container .row > a {
+    margin: 0;
+}
+
 
 @media screen and (min-width: 700px) {
     .create-listing-container form {

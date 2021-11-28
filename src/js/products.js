@@ -80,7 +80,7 @@ export async function getProductListByCategory (categoryNames) {
 
   const productCollection = collection(db, 'products')
   const q = query(productCollection,
-    where('slug', '==', categoryNames))
+    where('category', '==', categoryNames))
 
   try {
     const productSnapshot = await (await getDocs(q)).docs
@@ -91,6 +91,26 @@ export async function getProductListByCategory (categoryNames) {
   } catch (error) {
     console.log('products deleted failed', error)
     return []
+  }
+}
+
+export async function getAllProductsByOwner (userId) {
+  try {
+    const db = getFirestore()
+    const watchlistCollection = collection(db, 'products')
+    const q = query(watchlistCollection,
+      where('itemOwnerId', '==', userId))
+
+    const watchListSnapshot = await (await getDocs(q)).docs
+
+    const res = watchListSnapshot.map((data) => ({...data.data(), id: data.id}))
+
+    console.log('products data:', res)
+
+    return res
+  } catch (error) {
+    console.log('products failed', error)
+    return null
   }
 }
 

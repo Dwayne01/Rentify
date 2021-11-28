@@ -4,10 +4,11 @@
   --tertiary-color: rgb(249, 248, 254);
   --dark-text: #333;
   --red: red;
-  --gray: #eee;
+  --gray: #f5f5f5;
   --white: white;
   --black: rgb(25,24,36);
-  --dark-gray: #a1b2bc
+  --dark-gray: #a1b2bc;
+  --box-shadow: #ddd;
 }
 
 

@@ -12,7 +12,9 @@ if (isPath) {
     window.startLoader()
     const products = await getProductList()
     const cardCont = document.querySelector('.features-listings')
+    const page = document.querySelector('.listing-details')
     cardCont.innerHTML = ''
+    page.style.display = 'block'
 
     if (!products) {
       window.stopLoader()
@@ -41,12 +43,12 @@ if (isPath) {
 
     // eslint-disable-next-line guard-for-in
     for (const data in sortedData) {
-      console.log(sortedData[data][0], data)
       cardCont.innerHTML += (`<div class="catgeory-cont">
       <h3 class="category">${data}</h3>
-      <p><a href="./listing.html?${sortedData[data][0].data().slug}">
-        See all</a></p>
+      <p><a href="./listing.html?${sortedData[data][0].data().category}">
+        See all ></a></p>
     </div>`)
+
       const newDiv = document.createElement('div')
       newDiv.className = 'row listing-category'
 
@@ -69,7 +71,7 @@ if (isPath) {
                         </p>
                         <div class="card-bottom">
                             <p>${productData.currency} 
-                            ${productData.price}/day</p>
+                            ${productData.price} / day</p>
                             <p>${productData.city}</p>
                         </div>
                     </div>

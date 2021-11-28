@@ -4,6 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="rgb(25,24,36)">
     <link rel="manifest" href="manifest.json">
     <script src="https://kit.fontawesome.com/d27ab00225.js" crossorigin="anonymous"></script>
 </head>
@@ -29,8 +30,25 @@
                     <div>
                         <strong></strong>
                     </div>
-                    <button class="button">Get a Quote</button>
+                    <button class="button getQuote" id="openQuote">Get a Quote</button>
                 </div>
+                <!-- Get Quote Modal -->
+                <div id="quoteModal" class="modal">
+
+                    <!-- Modal content -->
+                    <div class="modal-content" style="text-align: left;">
+                        <span class="close">&times;</span>
+
+                        <label for="dateStart-label">Select Start date: </label>
+                        <input type="date" id="dateStart" name="dateStart">
+                        <h4 style="text-align: center;"> To </h4>
+                        <label for="EndStart-label">Select End date: </label>
+                        <input type="date" id="dateEnd" name="dateEnd">
+                        <button name="quoteModalbtn" class="quoteModalbtn" id="quoteModalbtn" >Submit</button>
+                    </div>
+                
+                </div>
+
                 <div class="listing-description">
                     <h2>Description</h2>
                     <div>

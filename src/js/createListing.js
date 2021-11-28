@@ -61,8 +61,8 @@ if (isPath) {
             latitude: latitude.value,
             longitude: longitude.value,
             itemOwner: firstName,
+            itemOwnerId: parseState.user,
             description,
-            itemImage,
             profileImg,
           })
 

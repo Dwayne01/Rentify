@@ -10,6 +10,9 @@ setTimeout(async () => {
     window.startLoader()
     const products = await getAllWatchlistByUser(state.user)
     state.products = products
+    const watchListPage = document.querySelector('.listing-details')
+    watchListPage.style.display = 'block'
+
     const cardCont = document.querySelector('.watchlist-listings')
     cardCont.innerHTML = ''
 
