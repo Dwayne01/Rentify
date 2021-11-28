@@ -1,19 +1,19 @@
-import {addToWatchlist, getAllWatchlistByUser} from './products'
+import {deleteProdut, getAllProductsByOwner} from './products'
 
 let state = {}
 
 setTimeout(async () => {
-  const isPath = window.location.pathname === '/watchlist.html'
+  const isPath = window.location.pathname === '/yourListings.html'
   if (isPath) {
     state = {...state, ...JSON.parse(localStorage.getItem('state'))}
 
     window.startLoader()
-    const products = await getAllWatchlistByUser(state.user)
+    const products = await getAllProductsByOwner(state.user)
     state.products = products
     const watchListPage = document.querySelector('.listing-details')
     watchListPage.style.display = 'block'
 
-    const cardCont = document.querySelector('.watchlist-listings')
+    const cardCont = document.querySelector('.your-listings')
     cardCont.innerHTML = ''
 
     if (!cardCont) return
@@ -25,7 +25,7 @@ setTimeout(async () => {
                               <img src=${product.imgUrl} alt="">
                               <div class="favorite-cont">
                                 <a class="favorite">
-                                  <i class="fas fa-star"></i>
+                                <i class="far fa-times-circle"></i>
                                 </a>
                               </div>
                         </div>
@@ -56,19 +56,8 @@ setTimeout(() => {
       e.preventDefault()
       const listing = state.products[index]
 
-      const {title, price, city, imgUrl, itemOwner} = listing
-
-      const params = {
-        userId: state.user,
-        title,
-        price,
-        city,
-        imgUrl,
-        itemOwner,
-      }
-
       window.startLoader()
-      await addToWatchlist(params)
+      await deleteProdut(listing.id)
 
       document.querySelectorAll('.card-container')[index].remove()
 

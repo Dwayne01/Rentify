@@ -17,7 +17,7 @@ export async function updateUserProfile (params, uid) {
   try {
     const db = getFirestore()
     await setDoc(doc(db, 'users', uid), params)
-    console.log('profile updated successfully')
+    console.log('profile updated successfully', uid)
     return true
   } catch (error) {
     console.log('profile update failed')

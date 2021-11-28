@@ -27,7 +27,7 @@
 }
 
 .hidemenu{
-    top: -250px;
+    top: -300px;
 }
 
 
@@ -98,7 +98,7 @@
 .profile-section > a {
     border: 1px solid var(--white);
     border-radius: 10px;
-    font-size: 18px;
+    font-size: 14px;
     padding: 10px;
     margin: auto;
     margin-right: 20px;
@@ -114,8 +114,7 @@
 }
 
 .logo img{
-    height: 50px;
-    width: 200px;
+    width: 56px;
 }
 
 .header {
@@ -218,7 +217,6 @@
 
 .row {
     display: flex;
-    height: 100%;
     padding-left: 0;
     padding-right: 0;
     grid-template-columns:none;
@@ -281,6 +279,9 @@ object-fit: cover;
     cursor: pointer;
 }
 
+.wishlist {
+    height: 95vh;
+}
 
 .card-img-container{
     width: 250px;
@@ -345,6 +346,7 @@ object-fit: cover;
    .listing-category {
     overflow: scroll;
     gap: 15px;
+    overflow-y: hidden;
    }
 
    .features-listings .category {
@@ -378,18 +380,17 @@ object-fit: cover;
    }
 
    .categoryCard img {
-        width: 100px;
-        height: 100px;
+        width: 80px;
+        height: 80px;
         object-fit: cover;
         display: block;
         margin: auto;
-        border: 4px solid var(--primary-color);
-        border-radius: 30px;
+        border-radius: 50px;
    }
 
    .categoryCard {
        text-align: center;
-       font-weight: 600;
+       font-weight: 500;
        display: block;
        align-items: center;
    }
@@ -438,7 +439,7 @@ object-fit: cover;
 
    .search-background {
        background-image: url('../images/bicycle.jpg');
-       height: 40vh;
+       height: 50vh;
        background-position: center; 
        background-repeat: no-repeat;
        background-size: cover;
@@ -447,13 +448,14 @@ object-fit: cover;
    }
 
    .slogan {
-       position: absolute;
-    transform: translateY(70%);
-    width: 100%;
-    text-align: center;
-    font-size: 1.5rem;
-    color: var(--primary-color);
-    padding: 20px;
+        position: absolute;
+        transform: translateY(70%);
+        width: 100%;
+        text-transform: capitalize;
+        text-align: center;
+        font-size: 1.3rem;
+        color: var(--dark);
+        padding: 20px;
    }
 
    .search-background .search-container {
@@ -493,16 +495,37 @@ object-fit: cover;
         margin: auto;
    }
 
+   #form-profile .row {
+       width: 100%;
+       margin-bottom: 50px;
+   }
+
    .updateProfile {
 	    height: 100%!important;
     }
 
     .updateProfile #image {
         display: none;
+
+    }
+
+    .profile label[for="image"] img{
+        border-radius: 50px;
     }
 
     .updateProfile input[type="submit"] {
         margin: 30px 0px;
+    }
+
+    
+
+    @media screen and (min-width: 400px) {
+      
+    
+            .slogan {
+                transform: translateY(110%);
+            }
+            
     }
 
 
@@ -510,7 +533,20 @@ object-fit: cover;
         .layout {
             display: none;
         }
+
+        .categoryCard img {
+            height: 100px;
+            width: 100px;
+        }
+
+        .profile-section > a {
+            font-size: 18px;
+        }
         
+        .slogan {
+            font-size: 1.5rem;
+       }
+    
 
         .custom-search {
             width: 70%;

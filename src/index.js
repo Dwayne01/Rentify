@@ -5,6 +5,8 @@ import './css/index.css'
 import './css/watchlist.css'
 import './css/singleListing.css'
 import './css/createListing.css'
+import './css/rentalRequest.css'
+import './css/yourlisting.css'
 import './pages/home.html'
 import './pages/profile.html'
 import './pages/watchlist.html'
@@ -12,6 +14,8 @@ import './pages/updateProfile.html'
 import './pages/singleListing.html'
 import './pages/listing.html'
 import './pages/createListing.html'
+import './pages/rentalRequest.html'
+import './pages/yourListings.html'
 import './js/contact'
 import './js/auth'
 import './js/updateProfile'
@@ -20,6 +24,9 @@ import './js/watchlist'
 import './js/singleListing'
 import './js/listing'
 import './js/createListing.js'
+import './js/quote.js'
+import './js/rentalRequest.js'
+import './js/yourlisting.js'
 
 import {initializeApp} from 'firebase/app'
 import {getAuth, onAuthStateChanged} from 'firebase/auth'
@@ -77,7 +84,7 @@ if (header) {
                   </span>
               </li>
               <li>
-                <a href="">
+                <a href="./profile.html">
                   <div class="menu-icon">
                       <i class="fas fa-user"></i>
                   </div>
@@ -86,7 +93,26 @@ if (header) {
                   </span>
                 </a>
               </li>
-              
+              <li>
+                  <a href="/yourListings.html">
+                      <div class="menu-icon">
+                          <i class="fas fa-star"></i>
+                      </div>
+                      <span class="menu-title">
+                        Your Listing
+                      </span>
+                  </a>
+              </li>
+              <li>
+                  <a href="/rentalRequest.html">
+                      <div class="menu-icon">
+                          <i class="fas fa-star"></i>
+                      </div>
+                      <span class="menu-title">
+                        Your Requests
+                      </span>
+                  </a>
+              </li>
               <li>
                   <a href="/watchlist.html">
                       <div class="menu-icon">
@@ -125,54 +151,64 @@ if (noSearchHeader) {
     <img alt="profile" id="profile-image" tabindex="0" />
     <div class="menu hidemenu">
     <ul id="menu-list">
-      <li>
-          <div class="initials"></div>
-          <span class="user-name">
-              <div class="menu-name"></div>
-              <div class="menu-email"></div>
-          </span>
-      </li>
-      <li>
-        <a href="">
-          <div class="menu-icon">
-              <i class="fas fa-user"></i>
-          </div>
-          <span class="menu-title">
-              Profile
-          </span>
-        </a>
-      </li>
-      <li>
-          <a href="/createListing.html">
-            <div class="menu-icon">
-                <i class="fas fa-plus-square"></i>
-            </div>
-            <span class="menu-title">
-                Create Listing
-            </span>
-          </a>
-      </li>
-      <li>
-          <a href="/watchlist.html">
-              <div class="menu-icon">
-                  <i class="fas fa-star"></i>
-              </div>
-              <span class="menu-title">
-                Watchlist
-              </span>
-          </a>
-      </li>
-      <li>
-          <a id="logout" href="">
-              <div class="menu-icon">
-                <i class="fas fa-sign-out-alt"></i>
-              </div>
-              <span class="menu-title">
-                Logout
-              </span>
-          </a>
-      </li>
-    </ul>
+    <li>
+    <div class="initials"></div>
+    <span class="user-name">
+        <div class="menu-name"></div>
+        <div class="menu-email"></div>
+    </span>
+</li>
+<li>
+  <a href="./profile.html">
+    <div class="menu-icon">
+        <i class="fas fa-user"></i>
+    </div>
+    <span class="menu-title">
+        Profile
+    </span>
+  </a>
+</li>
+<li>
+    <a href="/yourListings.html">
+        <div class="menu-icon">
+            <i class="fas fa-star"></i>
+        </div>
+        <span class="menu-title">
+          Your Listing
+        </span>
+    </a>
+</li>
+<li>
+    <a href="/rentalRequest.html">
+        <div class="menu-icon">
+            <i class="fas fa-star"></i>
+        </div>
+        <span class="menu-title">
+          Your Requests
+        </span>
+    </a>
+</li>
+<li>
+    <a href="/watchlist.html">
+        <div class="menu-icon">
+            <i class="fas fa-star"></i>
+        </div>
+        <span class="menu-title">
+          Watchlist
+        </span>
+    </a>
+</li>
+<li>
+    <a id="logout" href="">
+        <div class="menu-icon">
+          <i class="fas fa-sign-out-alt"></i>
+        </div>
+        <span class="menu-title">
+          Logout
+        </span>
+    </a>
+</li>
+</ul>
     </div>
 </div>
 </div>

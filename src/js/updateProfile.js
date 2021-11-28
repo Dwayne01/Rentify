@@ -8,14 +8,29 @@ let state = {
 }
 
 if (updateProfile) {
-  const handleProfileUpdate = (params) => {
-    state = JSON.parse(localStorage.getItem('state'))
+  state = JSON.parse(localStorage.getItem('state'))
 
+  console.log({state})
+  const handleProfileUpdate = (params) => {
     const res = updateUserProfile(params, state.user)
     window.startLoader()
     setTimeout(() => {
-      window.stop()
+      window.stopLoader()
       if (res) {
+        const updatedProfile = {
+          ...state,
+          userProfile: {
+            ...state.userProfile,
+            firstName: params.firstName,
+            lastName: params.lastName,
+            address: params.address,
+            dob: params.dob,
+            phone: params.phone,
+            profileImg: params.profileImg,
+          },
+        }
+
+        localStorage.setItem('state', JSON.stringify(updatedProfile))
         window.location.href = '/home.html'
         window.stopLoader()
       }
@@ -43,6 +58,7 @@ if (updateProfile) {
       dob,
       phone,
       isProfileUpdated: true,
+      profileImg: state.userProfile.profileImg,
     }
 
     if (imgFile) {
@@ -56,4 +72,18 @@ if (updateProfile) {
 
     handleProfileUpdate(params)
   })
+
+  const imgFile = document.querySelector('.profile label[for="image"] > img ')
+  const firstName = document.querySelector('.profile #first_name')
+  const lastName = document.querySelector('.profile #last_name')
+  const address = document.querySelector('.profile #address')
+  const dob = document.querySelector('.profile #dob')
+  const phone = document.querySelector('.profile #phone')
+
+  firstName.value = state.userProfile.firstName
+  lastName.value = state.userProfile.lastName
+  address.value = state.userProfile.address
+  dob.value = state.userProfile.dob
+  phone.value = state.userProfile.phone
+  imgFile.src = state.userProfile.profileImg
 }

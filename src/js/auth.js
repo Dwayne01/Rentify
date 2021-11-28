@@ -9,8 +9,6 @@ const state = {
 const profileImg = 'https://firebasestorage.googleapis.com/v0/b/rentify-a0716.appspot.com/o/profile%2Fprofile.png?alt=media&token=4745cdcf-69f2-468f-9614-558ca99daa59'
 const logintbtn = document.querySelector('#form-auth')
 
-console.log(logintbtn)
-
 const goToSignup = document.getElementById('goto-signup')
 const goToSignin = document.getElementById('goto-signin')
 

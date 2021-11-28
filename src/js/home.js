@@ -45,7 +45,7 @@ if (isPath) {
     for (const data in sortedData) {
       cardCont.innerHTML += (`<div class="catgeory-cont">
       <h3 class="category">${data}</h3>
-      <p><a href="./listing.html?${sortedData[data][0].data().slug}">
+      <p><a href="./listing.html?${sortedData[data][0].data().category}">
         See all ></a></p>
     </div>`)
 
