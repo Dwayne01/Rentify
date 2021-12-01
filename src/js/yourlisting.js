@@ -20,28 +20,32 @@ setTimeout(async () => {
 
     for (const product of products) {
       cardCont.innerHTML += `
-                    <div class="card-container wishlist-item">
-                        <div class="card-img-container">
-                              <img src=${product.imgUrl} alt="">
-                              <div class="favorite-cont">
-                                <a class="favorite">
-                                <i class="far fa-times-circle"></i>
-                                </a>
-                              </div>
+              <div class="card-container wishlist-item">
+                  <div class="card-img-container">
+                      
+                        <img src=${product.itemImage} alt="">
+                      
+                        <div class="favorite-cont">
+                          <a class="favorite">
+                          <i class="far fa-times-circle"></i>
+                          </a>
                         </div>
-                        <div class="container__profile">
-                            <div class="container__profile__text">
-                                <h3>${product.title}</h3>
-                                <p>
-                                    <b>${product.itemOwner}</b>
-                                </p>
-                                <div class="card-bottom">
-                                    <p>C$${product.price}/day</p>
-                                    <p>${product.city}</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                  </div>
+                  <div class="container__profile">
+                      <div class="container__profile__text">
+                          <a href="./singleListing.html?${product.id}">
+                            <h3>${product.title}</h3>
+                          </a>
+                          <p>
+                              <b>${product.itemOwner}</b>
+                          </p>
+                          <div class="card-bottom">
+                              <p>C$${product.price}/day</p>
+                              <p>${product.city}</p>
+                          </div>
+                      </div>
+                  </div>
+              </div>
         `
     }
     window.stopLoader()

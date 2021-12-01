@@ -1,3 +1,24 @@
 .your-listings{
     min-height: 100vh;
+    display: grid;
+    margin-top: 20px;
+    grid-template-columns: auto;
+    grid-template-rows: repeat(auto-fill, 411px);
+}
+
+.your-listings  .card-img-container {
+    width: 100%;
+    position: relative;
+}
+
+@media screen and (min-width: 400px) {
+    .your-listings {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .your-listings {
+        grid-template-columns: repeat(auto-fill, minmax(225px, 1fr));
+    }
 }

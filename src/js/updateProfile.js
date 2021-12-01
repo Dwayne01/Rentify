@@ -46,6 +46,12 @@ if (updateProfile) {
     }, 3000)
   }
 
+  const imgInputField = document.querySelector('#image')
+
+  imgInputField && imgInputField.addEventListener('change', () => {
+    imgInputField.style.display = 'block'
+  })
+
   updateProfileForm && updateProfileForm.addEventListener('submit', (e) => {
     e.preventDefault()
     const imgFile = document.querySelector('#image').files[0]

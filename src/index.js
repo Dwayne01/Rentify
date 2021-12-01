@@ -171,7 +171,7 @@ if (noSearchHeader) {
 <li>
     <a href="/yourListings.html">
         <div class="menu-icon">
-            <i class="fas fa-star"></i>
+          <i class="fas fa-stream"></i>
         </div>
         <span class="menu-title">
           Your Listing
@@ -181,7 +181,7 @@ if (noSearchHeader) {
 <li>
     <a href="/rentalRequest.html">
         <div class="menu-icon">
-            <i class="fas fa-star"></i>
+          <i class="fas fa-eye"></i>
         </div>
         <span class="menu-title">
           Your Requests

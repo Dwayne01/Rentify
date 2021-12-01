@@ -315,7 +315,6 @@ object-fit: cover;
    .container__profile h3 {
     color: var(--dark);
     font-size: 1rem;
-    height: 30px;
     overflow: hidden;
     display: -webkit-box;
     -webkit-line-clamp: 2;
@@ -577,12 +576,14 @@ object-fit: cover;
 
         .listing .listing-by-category{
             width: 50%;
+            height: 100vh;
+            overflow: scroll;
         }
 
         .listing .container #map {
             display: block!important;
             width: 50%;
-            height: 90vh;
+            height: 100vh;
         }
    }
 

@@ -77,12 +77,11 @@ export async function getProductList () {
 
 export async function getProductListByCategory (categoryNames) {
   const db = getFirestore()
+  console.log('+++++++++++++++++++++++++++++++++++++++', {categoryNames})
 
   const productCollection = collection(db, 'products')
   const q = query(productCollection,
     where('category', '==', categoryNames))
-
-  console.log({categoryNames})
 
   try {
     const productSnapshot = await (await getDocs(q)).docs
