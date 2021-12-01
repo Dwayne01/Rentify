@@ -97,8 +97,17 @@ if (isPath) {
           }
 
           window.startLoader()
-          await updateReqest(params)
-          window.stopLoader()
+          try {
+            await updateReqest(params)
+            setTimeout(() => {
+              window.stopLoader()
+              window.location.href = '/rentalRequest.html'
+            }, 3000)
+          } catch (error) {
+            setTimeout(() => {
+              window.stopLoader()
+            }, 3000)
+          }
         })
       })
 
