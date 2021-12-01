@@ -87,7 +87,9 @@ body {
 	margin: 0;
 	color:var(--red);
 	align-self: start;
+	text-align: left;
 }
+
 #errorMsglogin{
 	margin:0;
 	color:var(--red);

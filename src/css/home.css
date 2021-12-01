@@ -14,7 +14,7 @@
 }
 
 .menu #menu-list {
-    width: 300px;
+    width: 250px;
     background: var(--white);
     text-decoration: none;
     list-style: none;
@@ -214,6 +214,10 @@
     padding: 15px;
 }
 
+.home {
+    height: 100vh;
+    overflow: scroll;
+}
 
 .row {
     display: flex;
@@ -532,6 +536,10 @@ object-fit: cover;
    @media screen and (min-width: 700px) {
         .layout {
             display: none;
+        }
+
+        .menu #menu-list {
+            width: 300px;
         }
 
         .categoryCard img {

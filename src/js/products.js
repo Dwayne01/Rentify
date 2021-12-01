@@ -82,10 +82,12 @@ export async function getProductListByCategory (categoryNames) {
   const q = query(productCollection,
     where('category', '==', categoryNames))
 
+  console.log({categoryNames})
+
   try {
     const productSnapshot = await (await getDocs(q)).docs
 
-    console.log('product data:', productSnapshot)
+    console.log('product by category data:', productSnapshot)
 
     return productSnapshot
   } catch (error) {
