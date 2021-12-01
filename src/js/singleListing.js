@@ -61,9 +61,8 @@ if (isPath) {
     description.innerHTML = res.description
     agentName.innerHTML = res.itemOwner
     userPhoto.src = res.profileImg
-    cost.innerHTML = `${res.currency}${res.price} / day`
+    cost.innerHTML = `${res.currency} ${res.price} / day`
 
-    console.log(res.photos)
     for (let url = 1; url < res.photos.length; url++) {
       listingImgCont.innerHTML +=
       `<img src="${res.photos[url]}" alt="listing main image"/>`

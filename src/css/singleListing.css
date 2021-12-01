@@ -11,7 +11,6 @@
     width: 100%;
     border-radius: 10px;
     object-fit: cover;
-    height: 600px;
 }
 
 .other-listing-img {
@@ -207,10 +206,15 @@
     .container-auto {
         width: 80%;
     }
+
 }
 
 @media screen and (min-width: 700px) {
     .modal-content {
         width: 50%; /* Could be more or less, depending on screen size */
     }
+    .listing-main-img img {
+        height: 600px;
+    }
+    
 }

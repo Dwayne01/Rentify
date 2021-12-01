@@ -1,10 +1,27 @@
-.watchlist-listings{
+.watchlist-listings {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(225px, 1fr));
-    gap: 24px 16px;
-    grid-template-rows: auto;
-    margin: 15px;
+    margin-top: 20px;
+    grid-template-columns: auto;
+    grid-template-rows: repeat(auto-fill, 411px);
 }
+
+.watchlist-listings .card-img-container {
+    width: 100%;
+    position: relative;
+}
+
+
+@media screen and (min-width: 400px) {
+    .watchlist-listings {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .watchlist-listings {
+        /* grid-template-columns: repeat(auto-fill, minmax(225px, 1fr)); */
+    }
+} 
 
 .flex-grow-2{
     flex-grow: 2;

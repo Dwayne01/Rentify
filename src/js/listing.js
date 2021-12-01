@@ -12,8 +12,9 @@ if (isPath) {
     cardCont.innerHTML = ''
 
     const category = window.location.search
-      .slice(1, window.location.pathname.length)
+      .slice(1, window.location.search.length)
     window.startLoader()
+
     const products = await getProductListByCategory(category)
 
     state.products = products.map((prod) => prod.data())
@@ -109,6 +110,7 @@ if (isPath) {
     }
   })
 }
+
 function initMap (products) {
   const mapEle = document.getElementById('map')
   if (!mapEle) return
@@ -116,7 +118,7 @@ function initMap (products) {
   const locations = products.map((product, index) => {
     const prod = product.data()
     return ([`${prod.currency} ${prod.price}`,
-      prod.latitude, prod.longitude, index + 1])
+      prod.latitude, prod.longitude, index + 1, prod.title])
   })
 
   const map = new google.maps.Map(mapEle, {
@@ -138,7 +140,7 @@ function initMap (products) {
 
     google.maps.event.addListener(marker, 'click', (function (marker, i) {
       return function () {
-        infowindow.setContent(locations[i][0])
+        infowindow.setContent(`${locations[i][4]} (${locations[i][0]})`)
         infowindow.open(map, marker)
       }
     })(marker, i))
