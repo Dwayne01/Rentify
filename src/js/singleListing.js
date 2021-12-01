@@ -15,8 +15,6 @@ if (isPath) {
   async function initMap (product) {
     if (!mapEle) return
 
-    console.log(product)
-
     const locations = [`${product.currency} ${product.weeklyPrice}`,
       product.lat, product.lng]
 
@@ -73,6 +71,9 @@ if (isPath) {
 
     call.href = `tel://${res.phone}`
     message.href = `sms://${res.phone}`
+
+    call.innerHTML = `Call ${res.itemOwner}`
+    message.innerHTML = `Message ${res.itemOwner}`
 
     window.stopLoader()
     detailsPage.style.visibility = 'visible'
