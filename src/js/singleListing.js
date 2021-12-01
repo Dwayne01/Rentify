@@ -52,6 +52,8 @@ if (isPath) {
 
     state.product = res
 
+    console.log(state.product, res)
+
     const localState = localStorage.getItem('state')
     state.user = JSON.parse(localState)
 
@@ -165,7 +167,7 @@ if (isPath) {
       item: state.product.title,
       itemImage: state.product.itemImage,
       itemID: state.itemId,
-      agentID: state.product.agentID,
+      agentID: state.product.itemOwnerId,
       userID: state.user.user,
       ...state.user.userProfile,
     }

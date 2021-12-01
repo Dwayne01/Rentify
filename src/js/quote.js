@@ -9,7 +9,7 @@ export async function rentItem (params) {
     console.log('requests created successfully', res)
     return true
   } catch (error) {
-    console.log('requests create failed')
+    console.log('requests create failed', error)
     return false
   }
 }
