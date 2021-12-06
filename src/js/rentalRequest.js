@@ -99,6 +99,7 @@ if (isPath) {
           window.startLoader()
           try {
             await updateReqest(params)
+
             setTimeout(() => {
               window.stopLoader()
               window.location.href = '/rentalRequest.html'

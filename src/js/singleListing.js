@@ -1,6 +1,8 @@
 import {getSingleProduct} from './products'
 import {rentItem} from './quote'
 
+// eslint-disable-next-line max-len
+const serverKey = 'key=AAAANejcHU4:APA91bGzerR35GLhwkWjXJTPh26dWB4shBkiobURBOlDwSR-AEhI5_G6ZWljcCpmKiB_igXAjgbictoBFUdtU-rgWz3FlydE46hGW8jbdG-O_I-93RlYC7MkRUNDGzYFTdcBvU-oWTEO'
 const isPath = window.location.pathname === '/singleListing.html'
 
 if (isPath) {
@@ -51,8 +53,6 @@ if (isPath) {
     const {res} = product
 
     state.product = res
-
-    console.log(state.product, res)
 
     const localState = localStorage.getItem('state')
     state.user = JSON.parse(localState)
@@ -179,6 +179,32 @@ if (isPath) {
       const quoteBox = document.querySelector('.listing-pricing')
       quoteBox.innerHTML = `<strong>Your request has been sent to
        ${state.product.itemOwner}</strong>`
+    }).then(async () => {
+      console.log('we ran')
+      const body = {
+        to: state.user.userProfile.pushID,
+        notification: {
+          title: 'Rental Request',
+          icon: '../images/logo.png',
+          // eslint-disable-next-line max-len
+          body: 'someone wants to rent your item, check your requests to know more',
+        },
+      }
+
+      console.log('push notification body', body)
+      const options = {
+        method: 'POST',
+        headers: new Headers({
+          'Authorization': serverKey,
+          'Content-Type': 'application/json',
+          'body': JSON.stringify(params),
+        }),
+      }
+      await fetch('https://fcm.googleapis.com/fcm/send', options).then((res) => {
+        console.log('sent', res)
+      }).catch((err) => {
+        console.log('err', err)
+      })
     })
 
     window.stopLoader()

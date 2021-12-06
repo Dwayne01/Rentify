@@ -1,6 +1,7 @@
 /* eslint-disable no-irregular-whitespace */
 /* eslint-disable no-mixed-spaces-and-tabs */
 /* eslint-disable no-tabs */
+// importScripts()
 
 const cacheName = 'v1'
 const urlsToCache = ['/', '/home.html', '/main.bundle.js']
@@ -93,3 +94,16 @@ async function cacheThenNetworkButUpdateCacheStrategy (event) {
     console.error(err)
   }
 }
+
+// const firebaseConfig = {
+//   apiKey: 'AIzaSyBE8v8vX6rs26RYCjgbPZo6_c8JtKTYlCc',
+//   authDomain: 'rentify-a0716.firebaseapp.com',
+//   projectId: 'rentify-a0716',
+//   storageBucket: 'rentify-a0716.appspot.com',
+//   messagingSenderId: '231540006222',
+//   appId: '1:231540006222:web:64129138773c1af280521f',
+//   measurementId: 'G-NEC080LHGV',
+//   databaseURL: 'https://rentify-a0716-default-rtdb.firebaseio.com/',
+// }
+
+// initializeApp(firebaseConfig)
