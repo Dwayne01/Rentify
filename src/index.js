@@ -29,8 +29,23 @@ import './js/rentalRequest.js'
 import './js/yourlisting.js'
 
 import {initializeApp} from 'firebase/app'
+import {getMessaging} from 'firebase/messaging'
 import {getAuth, onAuthStateChanged} from 'firebase/auth'
 import {getUserProfile} from './js/user'
+
+const firebaseConfig = {
+  apiKey: 'AIzaSyBE8v8vX6rs26RYCjgbPZo6_c8JtKTYlCc',
+  authDomain: 'rentify-a0716.firebaseapp.com',
+  projectId: 'rentify-a0716',
+  storageBucket: 'rentify-a0716.appspot.com',
+  messagingSenderId: '231540006222',
+  appId: '1:231540006222:web:64129138773c1af280521f',
+  measurementId: 'G-NEC080LHGV',
+  databaseURL: 'https://rentify-a0716-default-rtdb.firebaseio.com/',
+}
+
+const firebaseApp = initializeApp(firebaseConfig)
+getMessaging(firebaseApp)
 
 let state = {
   user: null,
@@ -43,6 +58,13 @@ if (module.hot) {
 
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('service-worker.js', {scope: '.'})
+    .then((register) => {
+      console.log('Service worker registerd!', register)
+    }).catch(() => {
+      console.log('Service worker failed!')
+    })
+
+  navigator.serviceWorker.register('firebase-messaging-sw.js', {scope: '.'})
     .then((register) => {
       console.log('Service worker registerd!', register)
     }).catch(() => {
@@ -317,17 +339,3 @@ if (profilePic) {
   profilePic.src = userInfo.profileImg
   initials.innerHTML = userInfo.firstName[0] + userInfo.lastName[0]
 }
-
-const firebaseConfig = {
-  apiKey: 'AIzaSyBE8v8vX6rs26RYCjgbPZo6_c8JtKTYlCc',
-  authDomain: 'rentify-a0716.firebaseapp.com',
-  projectId: 'rentify-a0716',
-  storageBucket: 'rentify-a0716.appspot.com',
-  messagingSenderId: '231540006222',
-  appId: '1:231540006222:web:64129138773c1af280521f',
-  measurementId: 'G-NEC080LHGV',
-  databaseURL: 'https://rentify-a0716-default-rtdb.firebaseio.com/',
-}
-
-const firebaseApp = initializeApp(firebaseConfig)
-state.firestore = firebaseApp
