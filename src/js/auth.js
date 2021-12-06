@@ -153,8 +153,12 @@ const container = document.getElementById('container')
 
 signUpButton && signUpButton.addEventListener('click', () => {
   container.classList.add('right-panel-active')
+  document.getElementById('create-account-title').style.display = 'block'
+  document.getElementById('login-account-title').style.display = 'none'
 })
 
 signInButton && signInButton.addEventListener('click', () => {
   container.classList.remove('right-panel-active')
+  document.getElementById('create-account-title').style.display = 'none'
+  document.getElementById('login-account-title').style.display = 'block'
 })
