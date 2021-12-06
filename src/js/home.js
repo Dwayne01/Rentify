@@ -118,14 +118,15 @@ function handleDisplayList (products) {
   window.stopLoader()
 }
 
-onMessage((res) => {
-  console.log(res)
-  alert('hello')
-})
-
-function initialisePushNotification () {
-  console.log('push notification initialized')
+setTimeout(() => {
   const messaging = getMessaging()
+  onMessage(messaging, (res) => {
+    console.log(res, 'PAyload')
+  })
+}, 3000)
+function initialisePushNotification () {
+  const messaging = getMessaging()
+  console.log('push notification initialized')
 
   Notification.requestPermission().then((permission) => {
     if (permission === 'granted') {
