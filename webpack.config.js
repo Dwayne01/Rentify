@@ -29,6 +29,9 @@ module.exports = {
           from: 'service-worker.js',
         },
         {
+          from: 'firebase-messaging-sw.js',
+        },
+        {
           from: 'icons/',
           to: 'icons/',
         },
