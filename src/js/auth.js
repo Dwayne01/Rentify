@@ -6,6 +6,7 @@ import {getUserProfile} from './user'
 const state = {
 
 }
+// eslint-disable-next-line max-len
 const profileImg = 'https://firebasestorage.googleapis.com/v0/b/rentify-a0716.appspot.com/o/profile%2Fprofile.png?alt=media&token=4745cdcf-69f2-468f-9614-558ca99daa59'
 const logintbtn = document.querySelector('#form-auth')
 
@@ -82,7 +83,7 @@ logintbtn && logintbtn.addEventListener('submit', (e) => {
 })
 
 const signupbtn = document.
-  querySelector('.registration-form > input[type="submit"')
+  querySelector('.registration-form #submit')
 
 signupbtn && signupbtn.addEventListener('click', (e) => {
   e.preventDefault()

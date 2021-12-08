@@ -1,6 +1,6 @@
 import {updateUserProfile, uploadImage} from './user'
 
-const updateProfileForm = document.querySelector('#form-profile')
+const updateProfileForm = document.querySelector('#form-profile > #submit')
 const updateProfile = document.querySelector('.updateProfile')
 
 let state = {
@@ -52,7 +52,7 @@ if (updateProfile) {
     imgInputField.style.display = 'block'
   })
 
-  updateProfileForm && updateProfileForm.addEventListener('submit', (e) => {
+  updateProfileForm && updateProfileForm.addEventListener('click', (e) => {
     e.preventDefault()
     const imgFile = document.querySelector('#image').files[0]
     const firstName = document.querySelector('#first_name').value
