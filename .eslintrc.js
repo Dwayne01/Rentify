@@ -16,6 +16,7 @@ module.exports = {
     'no-multiple-empty-lines': ['error', {'max': 1, 'maxBOF': 10}],
     'tabindex-no-positive': 'off',
     'array-callback-return': 'off',
+    'max-len': ['error', {'code': 120}],
     'object-curly-spacing': 'warn',
     'quotes': [2, 'single', {'allowTemplateLiterals': true}],
     'indent': ['error', 2],

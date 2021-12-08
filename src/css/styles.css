@@ -97,3 +97,10 @@ footer {
   justify-content: center;
 }
 
+#duration {
+  margin-bottom: 20px;
+}
+
+#duration strong {
+  color: var(--primary-color);
+}

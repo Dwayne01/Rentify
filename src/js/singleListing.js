@@ -14,17 +14,25 @@ if (isPath) {
   const listingEle = document.querySelector('.listing-detail-page')
   const detailsPage = document.querySelector('.listing-detail-page')
 
+  mapEle.innerHTML = 'Loading...'
+
   async function initMap (product) {
     if (!mapEle) return
 
     const locations = [`${product.currency} ${product.weeklyPrice}`,
       product.lat, product.lng]
 
+    const directionsService = new google.maps.DirectionsService()
+    const directionsRenderer = new google.maps.DirectionsRenderer()
+    const destination = new google.maps.LatLng(locations[1], locations[2])
+
     const map = new google.maps.Map(mapEle, {
       zoom: 10,
-      center: new google.maps.LatLng(locations[1], locations[2]),
+      center: origin,
       mapTypeId: google.maps.MapTypeId.ROADMAP,
     })
+
+    directionsRenderer.setMap(map)
 
     const infowindow = new google.maps.InfoWindow()
 
@@ -38,6 +46,34 @@ if (isPath) {
         infowindow.setContent(locations[0])
         infowindow.open(map, marker)
       }
+    })
+
+    navigator.geolocation.getCurrentPosition(function (position) {
+      const lat = position.coords.latitude
+      const long = position.coords.longitude
+
+      calculateAndDisplayRoute({directionsService, directionsRenderer,
+        destination, origin: new google.maps.LatLng(lat, long)})
+
+      const icon = {
+        url: 'https://www.appstoi.com/apk/social/wp-content/uploads/2016/07/Blue-Dot-World-Chat.png', // url
+        scaledSize: new google.maps.Size(10, 10), // scaled size
+        origin: new google.maps.Point(0, 0), // origin
+        anchor: new google.maps.Point(0, 0), // anchor
+      }
+
+      const markerMine = new google.maps.Marker({
+        position: new google.maps.LatLng(lat, long),
+        map: map,
+        icon,
+      })
+
+      google.maps.event.addListener(markerMine, 'click', function () {
+        return function () {
+          infowindow.setContent('locations[0]')
+          infowindow.open(map, markerMine)
+        }
+      })
     })
 
     const itemName = document.querySelector('.title')
@@ -180,7 +216,6 @@ if (isPath) {
       quoteBox.innerHTML = `<strong>Your request has been sent to
        ${state.product.itemOwner}</strong>`
     }).then(async () => {
-      console.log('we ran')
       const body = {
         to: state.user.userProfile.pushID,
         notification: {
@@ -209,4 +244,32 @@ if (isPath) {
 
     window.stopLoader()
   }
+}
+
+// eslint-disable-next-line max-len
+function calculateAndDisplayRoute ({directionsService, directionsRenderer, origin, destination}) {
+  const request = {
+    origins: [origin],
+    destinations: [destination],
+    travelMode: google.maps.TravelMode.DRIVING,
+    unitSystem: google.maps.UnitSystem.METRIC,
+    avoidHighways: false,
+    avoidTolls: false,
+  }
+  const service = new google.maps.DistanceMatrixService()
+  directionsService
+    .route({
+      origin,
+      destination,
+      travelMode: google.maps.TravelMode.DRIVING,
+    })
+    .then((response) => {
+      directionsRenderer.setDirections(response)
+    })
+    .catch((e) => window.alert('Directions request failed due to ' + e))
+  service.getDistanceMatrix(request).then((response) => {
+    document.getElementById('duration').innerHTML =
+     // eslint-disable-next-line max-len
+     `This item is <strong>${response.rows[0].elements[0].distance.text}</strong> away and <strong>${response.rows[0].elements[0].duration.text}</strong> travel time`
+  })
 }
