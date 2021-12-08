@@ -16,7 +16,9 @@ if (isPath) {
   setTimeout(async () => {
     window.startLoader()
     const products = await getProductList()
-    initialisePushNotification()
+    if (getDeviceType() === 'desktop') {
+      initialisePushNotification()
+    }
     const page = document.querySelector('.listing-details')
 
     page.style.display = 'block'
@@ -149,4 +151,19 @@ function initialisePushNotification () {
         })
     }
   })
+}
+
+const getDeviceType = () => {
+  const ua = navigator.userAgent
+  if (/(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i.test(ua)) {
+    return 'tablet'
+  }
+  if (
+    /Mobile|iP(hone|od)|Android|BlackBerry|IEMobile|Kindle|Silk-Accelerated|(hpw|web)OS|Opera M(obi|ini)/.test(
+      ua,
+    )
+  ) {
+    return 'mobile'
+  }
+  return 'desktop'
 }
