@@ -16,7 +16,11 @@ if (isPath) {
   setTimeout(async () => {
     window.startLoader()
     const products = await getProductList()
-    if (getDeviceType() === 'desktop') {
+
+    const deviceType = getDeviceType()
+
+    console.log({deviceType})
+    if (deviceType === 'desktop') {
       initialisePushNotification()
     }
     const page = document.querySelector('.listing-details')
