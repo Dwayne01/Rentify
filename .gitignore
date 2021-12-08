@@ -5,6 +5,7 @@ dist/*
 !dist/index.html
 node_modules/
 .temp_cache/
+.eslintcache
 *.log
 
 # OS generated files
