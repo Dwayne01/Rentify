@@ -54,7 +54,7 @@ if (updateProfile) {
 
   updateProfileForm && updateProfileForm.addEventListener('click', (e) => {
     e.preventDefault()
-    const imgFile = document.querySelector('#image').files[0]
+    const imgFile = document.querySelector('#image')
     const firstName = document.querySelector('#first_name').value
     const lastName = document.querySelector('#last_name').value
     const address = document.querySelector('#address').value
@@ -76,7 +76,7 @@ if (updateProfile) {
       profileImg: state.userProfile.profileImg,
     }
 
-    if (imgFile) {
+    if (imgFile && imgFile.files[0]) {
       uploadImage(imgFile,
         `profile/${firstName + '-' + imgFile.name}`)
         .then((data) => {
