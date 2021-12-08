@@ -141,7 +141,6 @@ function initialisePushNotification () {
           const params = {...userInfo.userProfile, pushID: currentToken}
 
           if (!userInfo.userProfile.pushID) {
-            // console.log(params, userInfo, {...userInfo, userProfile: params})
             await updateUserProfile( params, userInfo.user )
             localStorage.setItem('state', {...userInfo, userProfile: params})
           }

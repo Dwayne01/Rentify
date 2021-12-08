@@ -522,7 +522,7 @@ object-fit: cover;
         border-radius: 50px;
     }
 
-    .updateProfile input[type="submit"] {
+    .updateProfile #submit {
         margin: 30px 0px;
     }
 
