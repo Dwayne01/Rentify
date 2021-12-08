@@ -1,9 +1,9 @@
 import {getProductList} from './products'
-import {getMessaging, getToken, onMessage} from 'firebase/messaging'
-import {updateUserProfile} from './user'
+import {getMessaging, onMessage} from 'firebase/messaging'
+// import {updateUserProfile} from './user'
 
 // eslint-disable-next-line max-len
-const YOUR_PUBLIC_VAPID_KEY = 'BBTddtq3sEF2rzrZGUe1wv7bveV0LeNQmStvIWWGkax1SYI5GsrNFUPPvTpn91v6dIxDSIpETpHhi5FxgjA4Yy4'
+// const YOUR_PUBLIC_VAPID_KEY = 'BBTddtq3sEF2rzrZGUe1wv7bveV0LeNQmStvIWWGkax1SYI5GsrNFUPPvTpn91v6dIxDSIpETpHhi5FxgjA4Yy4'
 
 const isPath = window.location.pathname === '/home.html'
 
@@ -16,9 +16,13 @@ if (isPath) {
   setTimeout(async () => {
     window.startLoader()
     const products = await getProductList()
-    if (getDeviceType() === 'desktop') {
-      initialisePushNotification()
-    }
+
+    // const deviceType = getDeviceType()
+
+    // console.log({deviceType})
+    // if (deviceType === 'desktop') {
+    //   initialisePushNotification()
+    // }
     const page = document.querySelector('.listing-details')
 
     page.style.display = 'block'
@@ -126,43 +130,44 @@ setTimeout(() => {
     console.log(res, 'PAyload')
   })
 }, 3000)
-function initialisePushNotification () {
-  const messaging = getMessaging()
-  console.log('push notification initialized')
+// function initialisePushNotification () {
+//   const messaging = getMessaging()
+//   console.log('push notification initialized')
 
-  Notification.requestPermission().then((permission) => {
-    if (permission === 'granted') {
-      getToken(messaging, {vapidKey: YOUR_PUBLIC_VAPID_KEY})
-        .then(async (currentToken) => {
-          console.log({currentToken})
+//   Notification.requestPermission().then((permission) => {
+//     if (permission === 'granted') {
+//       getToken(messaging, {vapidKey: YOUR_PUBLIC_VAPID_KEY})
+//         .then(async (currentToken) => {
+//           console.log({currentToken})
 
-          const userInfo = JSON.parse(localStorage.getItem('state'))
+//           const userInfo = JSON.parse(localStorage.getItem('state'))
 
-          const params = {...userInfo.userProfile, pushID: currentToken}
+//           const params = {...userInfo.userProfile, pushID: currentToken}
 
-          if (!userInfo.userProfile.pushID) {
-            await updateUserProfile( params, userInfo.user )
-            localStorage.setItem('state', {...userInfo, userProfile: params})
-          }
-        }).catch((err) => {
-          console.log('An error occurred while retrieving token. ', err)
-        // ...
-        })
-    }
-  })
-}
+//           if (!userInfo.userProfile.pushID) {
+//             await updateUserProfile( params, userInfo.user )
+//             localStorage.setItem('state', {...userInfo, userProfile: params})
+//           }
+//         }).catch((err) => {
+//           console.log('An error occurred while retrieving token. ', err)
+//         // ...
+//         })
+//     }
+//   })
+// }
 
-const getDeviceType = () => {
-  const ua = navigator.userAgent
-  if (/(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i.test(ua)) {
-    return 'tablet'
-  }
-  if (
-    /Mobile|iP(hone|od)|Android|BlackBerry|IEMobile|Kindle|Silk-Accelerated|(hpw|web)OS|Opera M(obi|ini)/.test(
-      ua,
-    )
-  ) {
-    return 'mobile'
-  }
-  return 'desktop'
-}
+// const getDeviceType = () => {
+//   const ua = navigator.userAgent
+//   console.log({ua})
+//   if (/(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i.test(ua)) {
+//     return 'tablet'
+//   }
+//   if (
+//     /Mobile|iP(hone|od)|Android|BlackBerry|IEMobile|Kindle|Silk-Accelerated|(hpw|web)OS|Opera M(obi|ini)/.test(
+//       ua,
+//     )
+//   ) {
+//     return 'mobile'
+//   }
+//   return 'desktop'
+// }
