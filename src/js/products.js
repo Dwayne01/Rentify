@@ -145,7 +145,7 @@ export async function getAllWatchlistByUser (userId) {
 
     const watchListSnapshot = await (await getDocs(q)).docs
 
-    const res = watchListSnapshot.map((data) => data.data())
+    const res = watchListSnapshot.map((data) => ({...data.data(), id: data.id}))
 
     console.log('Watchlist data:', res)
 
