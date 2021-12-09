@@ -113,24 +113,24 @@ firebase.initializeApp({
   'databaseURL': 'https://rentify-a0716-default-rtdb.firebaseio.com/',
 })
 
-console.log('whine me?')
+// console.log('whine me?')
 
-// Retrieve an instance of Firebase Messaging so that it can handle background
-// messages.
-const messaging = firebase.messaging()
+// // Retrieve an instance of Firebase Messaging so that it can handle background
+// // messages.
+// const messaging = firebase.messaging()
 
-messaging.
-  onBackgroundMessage(messaging, (payload) => {
-    console.log('[firebase-messaging-sw.js] Received background message ',
-      payload)
-    // Customize notification here
-    const notificationTitle = 'Background Message Title'
-    const notificationOptions = {
-      // eslint-disable-next-line max-len
-      body: 'You have a new request, check your rental request page for more details',
-      icon: '../images/logo.png',
-    }
+// messaging.
+//   onBackgroundMessage(messaging, (payload) => {
+//     console.log('[firebase-messaging-sw.js] Received background message ',
+//       payload)
+//     // Customize notification here
+//     const notificationTitle = 'Background Message Title'
+//     const notificationOptions = {
+//       // eslint-disable-next-line max-len
+//       body: 'You have a new request, check your rental request page for more details',
+//       icon: '../images/logo.png',
+//     }
 
-    self.registration.showNotification(notificationTitle,
-      notificationOptions)
-  })
+//     self.registration.showNotification(notificationTitle,
+//       notificationOptions)
+//   })

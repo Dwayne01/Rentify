@@ -10,7 +10,7 @@ if (isPath) {
 
   const parseState = JSON.parse(localState)
 
-  const {firstName, profileImg} = parseState.userProfile
+  const {firstName, profileImg, phone} = parseState.userProfile
 
   navigator.geolocation.getCurrentPosition(function (position) {
     const lat = position.coords.latitude
@@ -64,6 +64,8 @@ if (isPath) {
             itemOwnerId: parseState.user,
             description,
             profileImg,
+            phone,
+            email: parseStates.email,
           })
 
           window.stopLoader()

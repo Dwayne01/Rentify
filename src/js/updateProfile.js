@@ -77,8 +77,8 @@ if (updateProfile) {
     }
 
     if (imgFile && imgFile.files[0]) {
-      uploadImage(imgFile,
-        `profile/${firstName + '-' + imgFile.name}`)
+      uploadImage(imgFile.files[0],
+        `profile/${firstName + '-' + imgFile.files[0].name}`)
         .then((data) => {
           if (data) handleProfileUpdate({...params, profileImg: data})
         })
