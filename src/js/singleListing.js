@@ -29,6 +29,7 @@ if (isPath) {
     const map = new google.maps.Map(mapEle, {
       zoom: 10,
       center: origin,
+      disableDefaultUI: true,
       mapTypeId: google.maps.MapTypeId.ROADMAP,
     })
 
