@@ -202,7 +202,6 @@ if (isPath) {
       totalCost: calculatedOutput,
       costPerDat: state.product.price,
       requestProcessed: false,
-      approved: false,
       item: state.product.title,
       itemImage: state.product.itemImage,
       itemID: state.itemId,

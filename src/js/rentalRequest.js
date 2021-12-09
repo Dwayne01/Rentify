@@ -116,7 +116,7 @@ if (isPath) {
         ele.addEventListener('click', async (e) => {
           const params = {
             ...state.requestFromOthers[ind],
-            approve: false,
+            approve: true,
             requestProcessed: true,
           }
           window.startLoader()
