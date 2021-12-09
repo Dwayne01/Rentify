@@ -65,7 +65,7 @@ if (isPath) {
             description,
             profileImg,
             phone,
-            email: parseStates.email,
+            email: parseState.email,
           })
 
           window.stopLoader()

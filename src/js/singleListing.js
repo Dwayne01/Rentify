@@ -81,7 +81,8 @@ if (isPath) {
     const description = document.querySelector('.listing-description > div')
     const agentName = document.querySelector('.owner-name')
     const userPhoto = document.querySelector('.agent-info img')
-    const cost = document.querySelector('.listing-pricing strong')
+    const cost = document.querySelector('.listing-pricing #price')
+    const deposit = document.querySelector('.listing-pricing #deposit')
     const call = document.querySelector('.agent-card-info > .call')
     const message = document.querySelector('.agent-card-info .message')
     const listingImgCont = document.querySelector('.other-listing-img')
@@ -100,6 +101,7 @@ if (isPath) {
     agentName.innerHTML = res.itemOwner
     userPhoto.src = res.profileImg
     cost.innerHTML = `${res.currency} ${res.price} / day`
+    deposit.innerText = `You would be paying a security deposit of ${res.currency} ${res.deposit}`
 
     for (let url = 1; url < res.photos.length; url++) {
       listingImgCont.innerHTML +=
