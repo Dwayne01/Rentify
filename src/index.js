@@ -63,13 +63,6 @@ if ('serviceWorker' in navigator) {
     }).catch(() => {
       console.log('Service worker failed!')
     })
-
-  navigator.serviceWorker.register('firebase-messaging-sw.js', {scope: '.'})
-    .then((register) => {
-      console.log('Service worker registerd!', register)
-    }).catch(() => {
-      console.log('Service worker failed!')
-    })
 }
 
 const loader = document.getElementById('loading')
