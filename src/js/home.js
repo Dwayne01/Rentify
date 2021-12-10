@@ -7,37 +7,18 @@ import {getMessaging, onMessage} from 'firebase/messaging'
 
 const isPath = window.location.pathname === '/home.html'
 
+const state = {
+  products: [],
+  isPressed: {},
+}
 if (isPath) {
-  const state = {
-    products: [],
-    isPressed: {},
-  }
-
   setTimeout(async () => {
-    window.startLoader()
-    const products = await getProductList()
-
-    // const deviceType = getDeviceType()
-
-    // console.log({deviceType})
-    // if (deviceType === 'desktop') {
-    //   initialisePushNotification()
-    // }
-    const page = document.querySelector('.listing-details')
-
-    page.style.display = 'block'
-
-    if (!products) {
-      window.stopLoader()
-      return
-    }
-
-    state.products = products
-
-    handleDisplayList(products)
+    await handleGetProducts()
   }, 2000)
 
   const search = document.getElementById('search')
+
+  const searchbtn = document.querySelector('.fa-search')
 
   search && search.addEventListener('blur', () => {
     // console.log(search.value, 'i work')
@@ -51,16 +32,25 @@ if (isPath) {
 
   search && search.addEventListener('keydown', async (e) => {
     if (e.key === 'Enter') {
-      const filteredProducts = state.products.filter((product) => {
-        if (product.data().title.toLocaleLowerCase().split(' ')
-          .includes(search.value.toLocaleLowerCase())) {
-          return product
-        }
-      })
-
-      handleDisplayList(filteredProducts)
+      handleSearch()
     }
   })
+
+  searchbtn && searchbtn.addEventListener('click', async (e) => {
+    handleSearch()
+  })
+
+  async function handleSearch () {
+    await handleGetProducts()
+    const filteredProducts = state.products.filter((product) => {
+      if (product.data().title.toLocaleLowerCase().split(' ')
+        .includes(search.value.toLocaleLowerCase())) {
+        return product
+      }
+    })
+
+    handleDisplayList(filteredProducts)
+  }
 }
 
 function handleDisplayList (products) {
@@ -130,6 +120,25 @@ setTimeout(() => {
     console.log(res, 'PAyload')
   })
 }, 3000)
+
+async function handleGetProducts () {
+  window.startLoader()
+  const products = await getProductList()
+
+  const page = document.querySelector('.listing-details')
+
+  page.style.display = 'block'
+
+  if (!products) {
+    window.stopLoader()
+    return
+  }
+
+  state.products = products
+
+  handleDisplayList(products)
+}
+
 // function initialisePushNotification () {
 //   const messaging = getMessaging()
 //   console.log('push notification initialized')

@@ -129,7 +129,6 @@ if (isPath) {
     const userBtn = document.querySelector('.user')
 
     userBtn.addEventListener('click', () => {
-      console.log(agentBtn)
       reqContainer.innerHTML = ''
 
       for (const request of state.requestFromYou) {
