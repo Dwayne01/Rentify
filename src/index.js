@@ -256,25 +256,6 @@ profilePic && profilePic.addEventListener('blur', () => {
   }
 })
 
-const search = document.getElementById('search')
-
-search && search.addEventListener('blur', () => {
-  console.log(search.ariaValueMax, 'i work')
-})
-
-search && search.addEventListener('keydown', async (e) => {
-  if (e.key === 'Enter') {
-    const filteredProducts = state.products.filter((data) => {
-      if (data.itemName.toLocaleLowerCase().split(' ')
-        .includes(search.value.toLocaleLowerCase())) {
-        return data
-      }
-    })
-
-    console.log(filteredProducts)
-  }
-})
-
 window.stopLoader = function () {
   loader.style.display = 'none'
 }
